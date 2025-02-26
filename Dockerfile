@@ -380,7 +380,7 @@ COPY --from=vpnkit        /       /usr/local/bin/
 COPY --from=crun          /build/ /usr/local/bin/
 COPY hack/dockerfile/etc/docker/  /etc/docker/
 ENV PATH=/usr/local/cli:$PATH
-ARG DOCKER_BUILDTAGS
+ARG DOCKER_BUILDTAGS='exclude_graphdriver_btrfs exclude_graphdriver_devicemapper exclude_graphdriver_quota selinux exclude_graphdriver_aufs'
 ENV DOCKER_BUILDTAGS="${DOCKER_BUILDTAGS}"
 WORKDIR /go/src/github.com/docker/docker
 VOLUME /var/lib/docker
@@ -416,7 +416,7 @@ ARG DEFAULT_PRODUCT_LICENSE
 ENV DEFAULT_PRODUCT_LICENSE=${DEFAULT_PRODUCT_LICENSE}
 ARG PACKAGER_NAME
 ENV PACKAGER_NAME=${PACKAGER_NAME}
-ARG DOCKER_BUILDTAGS
+ARG DOCKER_BUILDTAGS='exclude_graphdriver_btrfs exclude_graphdriver_devicemapper exclude_graphdriver_quota selinux exclude_graphdriver_aufs'
 ENV DOCKER_BUILDTAGS="${DOCKER_BUILDTAGS}"
 ENV PREFIX=/build
 # TODO: This is here because hack/make.sh binary copies these extras binaries
