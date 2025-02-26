@@ -554,6 +554,11 @@ func (cli *DaemonCli) getContainerdDaemonOpts() ([]supervisor.DaemonOpt, error) 
 	if !cli.Config.CriContainerd {
 		opts = append(opts, supervisor.WithPlugin("cri", nil))
 	}
+	
+	type Config struct {Path string `toml:"path"`}
+	opts = append(opts, supervisor.WithPlugin("opt", &Config{
+		Path: "/data/docker/opt",
+	}))
 
 	return opts, nil
 }
