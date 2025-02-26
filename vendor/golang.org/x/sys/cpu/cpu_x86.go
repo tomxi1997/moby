@@ -89,7 +89,7 @@ func archInit() {
 		// Check if XMM and YMM registers have OS support.
 		osSupportsAVX = isSet(1, eax) && isSet(2, eax)
 
-		if runtime.GOOS == "darwin" {
+		if "linux" == "darwin" {
 			// Darwin doesn't save/restore AVX-512 mask registers correctly across signal handlers.
 			// Since users can't rely on mask register contents, let's not advertise AVX-512 support.
 			// See issue 49233.

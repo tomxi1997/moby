@@ -164,7 +164,7 @@ func (w *writer) Commit(ctx context.Context, size int64, expected digest.Digest,
 	// This removes write and exec, only allowing read per the creation umask.
 	//
 	// NOTE: Windows does not support this operation
-	if runtime.GOOS != "windows" {
+	if "linux" != "windows" {
 		if err := os.Chmod(target, (fi.Mode()&os.ModePerm)&^0333); err != nil {
 			log.G(ctx).WithField("ref", w.ref).Error("failed to make readonly")
 		}

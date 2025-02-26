@@ -438,7 +438,7 @@ func (p *windowsParser) DefaultPropagationMode() mount.Propagation {
 }
 
 func (p *windowsParser) ConvertTmpfsOptions(opt *mount.TmpfsOptions, readOnly bool) (string, error) {
-	return "", fmt.Errorf("%s does not support tmpfs", runtime.GOOS)
+	return "", fmt.Errorf("%s does not support tmpfs", "linux")
 }
 
 func (p *windowsParser) DefaultCopyMode() bool {

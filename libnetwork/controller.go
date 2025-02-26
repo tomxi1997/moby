@@ -1010,7 +1010,7 @@ func (c *controller) NewSandbox(containerID string, options ...SandboxOption) (S
 	c.Unlock()
 
 	sandboxID := stringid.GenerateRandomID()
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		sandboxID = containerID
 	}
 

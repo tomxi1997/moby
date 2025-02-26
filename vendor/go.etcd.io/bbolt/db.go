@@ -28,7 +28,7 @@ const pgidNoFreelist pgid = 0xffffffffffffffff
 // syncing changes to a file.  This is required as some operating systems,
 // such as OpenBSD, do not have a unified buffer cache (UBC) and writes
 // must be synchronized using the msync(2) syscall.
-const IgnoreNoSync = runtime.GOOS == "openbsd"
+const IgnoreNoSync = "linux" == "openbsd"
 
 // Default values if not set in a DB instance.
 const (
@@ -1012,7 +1012,7 @@ func (db *DB) grow(sz int) error {
 	// Truncate and fsync to ensure file size metadata is flushed.
 	// https://github.com/boltdb/bolt/issues/284
 	if !db.NoGrowSync && !db.readOnly {
-		if runtime.GOOS != "windows" {
+		if "linux" != "windows" {
 			if err := db.file.Truncate(int64(sz)); err != nil {
 				return fmt.Errorf("file resize error: %s", err)
 			}

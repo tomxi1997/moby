@@ -51,7 +51,7 @@ func TestDockerfileOutsideTheBuildContext(t *testing.T) {
 	defer cleanup()
 
 	expectedError := "path outside the build context: ../../Dockerfile ()"
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		expectedError = "failed to resolve scoped path ../../Dockerfile ()"
 	}
 
@@ -68,7 +68,7 @@ func TestNonExistingDockerfile(t *testing.T) {
 }
 
 func readAndCheckDockerfile(t *testing.T, testName, contextDir, dockerfilePath, expectedError string) {
-	if runtime.GOOS != "windows" {
+	if "linux" != "windows" {
 		skip.If(t, os.Getuid() != 0, "skipping test that requires root")
 	}
 	tarStream, err := archive.Tar(contextDir, archive.Uncompressed)
@@ -111,9 +111,9 @@ func TestCopyRunConfig(t *testing.T) {
 		},
 		{
 			doc:       "Set the command to a comment",
-			modifiers: []runConfigModifier{withCmdComment("comment", runtime.GOOS)},
+			modifiers: []runConfigModifier{withCmdComment("comment", "linux")},
 			expected: &container.Config{
-				Cmd: append(defaultShellForOS(runtime.GOOS), "#(nop) ", "comment"),
+				Cmd: append(defaultShellForOS("linux"), "#(nop) ", "comment"),
 				Env: defaultEnv,
 			},
 		},

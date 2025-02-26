@@ -154,7 +154,7 @@ func (img *Image) BaseImgVariant() string {
 func (img *Image) OperatingSystem() string {
 	os := img.OS
 	if os == "" {
-		os = runtime.GOOS
+		os = "linux"
 	}
 	return os
 }

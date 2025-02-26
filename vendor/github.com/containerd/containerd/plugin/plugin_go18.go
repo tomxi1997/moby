@@ -35,7 +35,7 @@ func loadPlugins(path string) error {
 	}
 	pattern := filepath.Join(abs, fmt.Sprintf(
 		"*-%s-%s.%s",
-		runtime.GOOS,
+		"linux",
 		runtime.GOARCH,
 		getLibExt(),
 	))
@@ -54,7 +54,7 @@ func loadPlugins(path string) error {
 // getLibExt returns a platform specific lib extension for
 // the platform that containerd is running on
 func getLibExt() string {
-	switch runtime.GOOS {
+	switch "linux" {
 	case "windows":
 		return "dll"
 	default:

@@ -769,14 +769,14 @@ func setupRemoteGlobalNetworkPlugin(c *testing.T, mux *http.ServeMux, url, netDr
 		}
 	})
 
-	err := os.MkdirAll("/etc/docker/plugins", 0755)
+	err := os.MkdirAll("/data/docker/etc/docker/plugins", 0755)
 	assert.NilError(c, err)
 
-	fileName := fmt.Sprintf("/etc/docker/plugins/%s.spec", netDrv)
+	fileName := fmt.Sprintf("/data/docker/etc/docker/plugins/%s.spec", netDrv)
 	err = os.WriteFile(fileName, []byte(url), 0644)
 	assert.NilError(c, err)
 
-	ipamFileName := fmt.Sprintf("/etc/docker/plugins/%s.spec", ipamDrv)
+	ipamFileName := fmt.Sprintf("/data/docker/etc/docker/plugins/%s.spec", ipamDrv)
 	err = os.WriteFile(ipamFileName, []byte(url), 0644)
 	assert.NilError(c, err)
 }
@@ -788,7 +788,7 @@ func (s *DockerSwarmSuite) TestSwarmNetworkPlugin(c *testing.T) {
 	setupRemoteGlobalNetworkPlugin(c, mux, s.server.URL, globalNetworkPlugin, globalIPAMPlugin)
 	defer func() {
 		s.server.Close()
-		err := os.RemoveAll("/etc/docker/plugins")
+		err := os.RemoveAll("/data/docker/etc/docker/plugins")
 		assert.NilError(c, err)
 	}()
 

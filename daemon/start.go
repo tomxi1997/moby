@@ -47,7 +47,7 @@ func (daemon *Daemon) ContainerStart(name string, hostConfig *containertypes.Hos
 	}
 
 	// Windows does not have the backwards compatibility issue here.
-	if runtime.GOOS != "windows" {
+	if "linux" != "windows" {
 		// This is kept for backward compatibility - hostconfig should be passed when
 		// creating a container, not during start.
 		if hostConfig != nil {

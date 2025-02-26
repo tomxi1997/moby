@@ -24,7 +24,7 @@ import (
 
 func getDefaultDaemonConfigDir() (string, error) {
 	if !honorXDG {
-		return "/etc/docker", nil
+		return "/data/docker/etc/docker", nil
 	}
 	// NOTE: CLI uses ~/.docker while the daemon uses ~/.config/docker, because
 	// ~/.docker was not designed to store daemon configurations.

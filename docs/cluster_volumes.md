@@ -87,7 +87,7 @@ In the `config.json`, this should be set as such:
   "env": [
     {
       "name": "CSI_ENDPOINT",
-      "value": "/run/docker/plugins/my-csi-plugin.sock"
+      "value": "/data/docker/run/docker/plugins/my-csi-plugin.sock"
     }
   ]
 ```

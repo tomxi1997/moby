@@ -210,7 +210,7 @@ func CredentialsFromJSON(ctx context.Context, jsonData []byte, scopes ...string)
 
 func wellKnownFile() string {
 	const f = "application_default_credentials.json"
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		return filepath.Join(os.Getenv("APPDATA"), "gcloud", f)
 	}
 	return filepath.Join(guessUnixHomeDir(), ".config", "gcloud", f)

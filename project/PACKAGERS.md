@@ -157,4 +157,4 @@ dockerd
 ```
 
 Generally, it is encouraged that additional configuration be placed in
-`/etc/docker/daemon.json`.
+`/data/docker/etc/docker/daemon.json`.

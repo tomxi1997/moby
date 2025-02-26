@@ -57,7 +57,7 @@ func TestValidateMount(t *testing.T) {
 			t.Errorf("expected %q, got %q, case: %d", x.expected, err, i)
 		}
 	}
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		parser = NewLCOWParser()
 		for i, x := range lcowCases {
 			err := parser.ValidateMountConfig(&x.input)

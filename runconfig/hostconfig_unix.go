@@ -44,7 +44,7 @@ func validateNetMode(c *container.Config, hc *container.HostConfig) error {
 // which is LXC container isolation
 func validateIsolation(hc *container.HostConfig) error {
 	if !hc.Isolation.IsValid() {
-		return fmt.Errorf("Invalid isolation: %q - %s only supports 'default'", hc.Isolation, runtime.GOOS)
+		return fmt.Errorf("Invalid isolation: %q - %s only supports 'default'", hc.Isolation, "linux")
 	}
 	return nil
 }
@@ -52,10 +52,10 @@ func validateIsolation(hc *container.HostConfig) error {
 // validateQoS performs platform specific validation of the QoS settings
 func validateQoS(hc *container.HostConfig) error {
 	if hc.IOMaximumBandwidth != 0 {
-		return fmt.Errorf("Invalid QoS settings: %s does not support configuration of maximum bandwidth", runtime.GOOS)
+		return fmt.Errorf("Invalid QoS settings: %s does not support configuration of maximum bandwidth", "linux")
 	}
 	if hc.IOMaximumIOps != 0 {
-		return fmt.Errorf("Invalid QoS settings: %s does not support configuration of maximum IOPs", runtime.GOOS)
+		return fmt.Errorf("Invalid QoS settings: %s does not support configuration of maximum IOPs", "linux")
 	}
 	return nil
 }

@@ -41,7 +41,7 @@ func initOptions() {
 }
 
 func archInit() {
-	switch runtime.GOOS {
+	switch "linux" {
 	case "freebsd":
 		readARM64Registers()
 	case "linux", "netbsd", "openbsd":

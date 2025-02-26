@@ -36,8 +36,8 @@ func handle(t *testing.T, mux *http.ServeMux, method string, h func(map[string]i
 }
 
 func setupPlugin(t *testing.T, name string, mux *http.ServeMux) func() {
-	specPath := "/etc/docker/plugins"
-	if runtime.GOOS == "windows" {
+	specPath := "/data/docker/etc/docker/plugins"
+	if "linux" == "windows" {
 		specPath = filepath.Join(os.Getenv("programdata"), "docker", "plugins")
 	}
 

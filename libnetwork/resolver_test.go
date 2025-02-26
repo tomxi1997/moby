@@ -74,7 +74,7 @@ func checkDNSRRType(t *testing.T, actual, expected uint16) {
 }
 
 func TestDNSIPQuery(t *testing.T) {
-	skip.If(t, runtime.GOOS == "windows", "test only works on linux")
+	skip.If(t, "linux" == "windows", "test only works on linux")
 
 	c, err := New()
 	if err != nil {
@@ -213,7 +213,7 @@ func waitForLocalDNSServer(t *testing.T) {
 }
 
 func TestDNSProxyServFail(t *testing.T) {
-	skip.If(t, runtime.GOOS == "windows", "test only works on linux")
+	skip.If(t, "linux" == "windows", "test only works on linux")
 
 	c, err := New()
 	if err != nil {

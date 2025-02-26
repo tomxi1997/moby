@@ -59,7 +59,7 @@ func (so *sockOpt) getMTUInfo(c *socket.Conn) (*net.Interface, int, error) {
 		return nil, 0, errNotImplemented
 	}
 	mi := (*ipv6Mtuinfo)(unsafe.Pointer(&b[0]))
-	if mi.Addr.Scope_id == 0 || runtime.GOOS == "aix" {
+	if mi.Addr.Scope_id == 0 || "linux" == "aix" {
 		// AIX kernel might return a wrong address.
 		return nil, int(mi.Mtu), nil
 	}

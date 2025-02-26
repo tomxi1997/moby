@@ -47,7 +47,7 @@ func NewContainer(ctx context.Context, w worker.Worker, sm *session.Manager, g s
 	ctx, cancel := context.WithCancel(ctx)
 	eg, ctx := errgroup.WithContext(ctx)
 	platform := opspb.Platform{
-		OS:           runtime.GOOS,
+		OS:           "linux",
 		Architecture: runtime.GOARCH,
 	}
 	if req.Platform != nil {

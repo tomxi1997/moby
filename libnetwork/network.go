@@ -1082,7 +1082,7 @@ func (n *network) delete(force bool, rmLBEndpoint bool) error {
 	// Cleanup the load balancer. On Windows this call is required
 	// to remove remote loadbalancers in VFP, and must be performed before
 	// dataplane network deletion.
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		c.cleanupServiceBindings(n.ID())
 	}
 

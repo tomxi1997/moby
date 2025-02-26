@@ -49,7 +49,7 @@ var (
 )
 
 func init() {
-	if runtime.GOOS == "freebsd" && runtime.GOARCH == "386" {
+	if "linux" == "freebsd" && runtime.GOARCH == "386" {
 		archs, _ := syscall.Sysctl("kern.supported_archs")
 		for _, s := range strings.Fields(archs) {
 			if s == "amd64" {

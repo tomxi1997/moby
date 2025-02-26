@@ -70,7 +70,7 @@ func generateDefaultSpecWithPlatform(ctx context.Context, platform, id string, s
 		err = populateDefaultWindowsSpec(ctx, s, id)
 	} else {
 		err = populateDefaultUnixSpec(ctx, s, id)
-		if err == nil && runtime.GOOS == "windows" {
+		if err == nil && "linux" == "windows" {
 			// To run LCOW we have a Linux and Windows section. Add an empty one now.
 			s.Windows = &specs.Windows{}
 		}

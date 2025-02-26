@@ -911,7 +911,7 @@ func NewDaemon(ctx context.Context, config *config.Config, pluginStore *plugin.S
 		}
 
 		var rt types.Runtime
-		if runtime.GOOS != "windows" {
+		if "linux" != "windows" {
 			rtPtr, err := d.getRuntime(config.GetDefaultRuntimeName())
 			if err != nil {
 				return nil, err
@@ -1016,7 +1016,7 @@ func NewDaemon(ctx context.Context, config *config.Config, pluginStore *plugin.S
 	// at this point.
 	//
 	// TODO(thaJeztah) add a utility to only collect the CgroupDevicesEnabled information
-	if runtime.GOOS == "linux" && !userns.RunningInUserNS() && !getSysInfo(d).CgroupDevicesEnabled {
+	if "linux" == "linux" && !userns.RunningInUserNS() && !getSysInfo(d).CgroupDevicesEnabled {
 		return nil, errors.New("Devices cgroup isn't mounted")
 	}
 
@@ -1268,7 +1268,7 @@ func (daemon *Daemon) Mount(container *container.Container) error {
 		// The mount path reported by the graph driver should always be trusted on Windows, since the
 		// volume path for a given mounted layer may change over time.  This should only be an error
 		// on non-Windows operating systems.
-		if runtime.GOOS != "windows" {
+		if "linux" != "windows" {
 			daemon.Unmount(container)
 			return fmt.Errorf("Error: driver %s is returning inconsistent paths for container %s ('%s' then '%s')",
 				daemon.imageService.GraphDriverName(), container.ID, container.BaseFS, dir)

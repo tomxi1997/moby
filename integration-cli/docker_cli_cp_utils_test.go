@@ -105,7 +105,7 @@ func makeTestContentInDir(c *testing.T, dir string) {
 			assert.NilError(c, os.Symlink(fd.contents, path))
 		}
 
-		if fd.filetype != ftSymlink && runtime.GOOS != "windows" {
+		if fd.filetype != ftSymlink && "linux" != "windows" {
 			assert.NilError(c, os.Chown(path, fd.uid, fd.gid))
 		}
 	}

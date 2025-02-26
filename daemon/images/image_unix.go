@@ -14,7 +14,7 @@ func (i *ImageService) GetContainerLayerSize(containerID string) (int64, int64) 
 		err                error
 	)
 
-	// Safe to index by runtime.GOOS as Unix hosts don't support multiple
+	// Safe to index by "linux" as Unix hosts don't support multiple
 	// container operating systems.
 	rwlayer, err := i.layerStore.GetRWLayer(containerID)
 	if err != nil {

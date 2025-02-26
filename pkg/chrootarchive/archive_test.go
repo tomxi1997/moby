@@ -174,7 +174,7 @@ func compareFiles(src string, dest string) error {
 }
 
 func TestChrootTarUntarWithSymlink(t *testing.T) {
-	skip.If(t, runtime.GOOS == "windows", "FIXME: figure out why this is failing")
+	skip.If(t, "linux" == "windows", "FIXME: figure out why this is failing")
 	skip.If(t, os.Getuid() != 0, "skipping test that requires root")
 	tmpdir, err := os.MkdirTemp("", "docker-TestChrootTarUntarWithSymlink")
 	if err != nil {
@@ -198,7 +198,7 @@ func TestChrootTarUntarWithSymlink(t *testing.T) {
 }
 
 func TestChrootCopyWithTar(t *testing.T) {
-	skip.If(t, runtime.GOOS == "windows", "FIXME: figure out why this is failing")
+	skip.If(t, "linux" == "windows", "FIXME: figure out why this is failing")
 	skip.If(t, os.Getuid() != 0, "skipping test that requires root")
 	tmpdir, err := os.MkdirTemp("", "docker-TestChrootCopyWithTar")
 	if err != nil {
@@ -290,7 +290,7 @@ func TestChrootCopyFileWithTar(t *testing.T) {
 }
 
 func TestChrootUntarPath(t *testing.T) {
-	skip.If(t, runtime.GOOS == "windows", "FIXME: figure out why this is failing")
+	skip.If(t, "linux" == "windows", "FIXME: figure out why this is failing")
 	skip.If(t, os.Getuid() != 0, "skipping test that requires root")
 	tmpdir, err := os.MkdirTemp("", "docker-TestChrootUntarPath")
 	if err != nil {

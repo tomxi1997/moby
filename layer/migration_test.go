@@ -41,7 +41,7 @@ func writeTarSplitFile(name string, tarContent []byte) error {
 
 func TestLayerMigration(t *testing.T) {
 	// TODO Windows: Figure out why this is failing
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		t.Skip("Failing on Windows")
 	}
 	td, err := os.MkdirTemp("", "migration-test-")
@@ -177,7 +177,7 @@ func tarFromFilesInGraph(graph graphdriver.Driver, graphID, parentID string, fil
 
 func TestLayerMigrationNoTarsplit(t *testing.T) {
 	// TODO Windows: Figure out why this is failing
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		t.Skip("Failing on Windows")
 	}
 	td, err := os.MkdirTemp("", "migration-test-")

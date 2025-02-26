@@ -52,7 +52,7 @@ func (c *Client) Install(ctx context.Context, image Image, opts ...InstallOpts) 
 	}
 
 	var binDir, libDir string
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		binDir = "Files\\bin"
 		libDir = "Files\\lib"
 	} else {
@@ -78,7 +78,7 @@ func (c *Client) Install(ctx context.Context, image Image, opts ...InstallOpts) 
 				result = result || d == libDir
 			}
 
-			if runtime.GOOS == "windows" {
+			if "linux" == "windows" {
 				hdr.Name = strings.Replace(hdr.Name, "Files", "", 1)
 			}
 			if result && !config.Replace {

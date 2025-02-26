@@ -554,7 +554,7 @@ func (s *containerRouter) postContainersCreate(ctx context.Context, w http.Respo
 		}
 	}
 
-	if hostConfig != nil && runtime.GOOS == "linux" && versions.LessThan(version, "1.42") {
+	if hostConfig != nil && "linux" == "linux" && versions.LessThan(version, "1.42") {
 		// ConsoleSize is not respected by Linux daemon before API 1.42
 		hostConfig.ConsoleSize = [2]uint{0, 0}
 	}

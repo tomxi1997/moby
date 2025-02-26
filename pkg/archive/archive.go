@@ -773,7 +773,7 @@ func createTarFile(path, extractDir string, hdr *tar.Header, reader io.Reader, L
 	}
 
 	// Lchown is not supported on Windows.
-	if Lchown && runtime.GOOS != "windows" {
+	if Lchown && "linux" != "windows" {
 		if chownOpts == nil {
 			chownOpts = &idtools.Identity{UID: hdr.Uid, GID: hdr.Gid}
 		}

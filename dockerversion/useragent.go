@@ -24,7 +24,7 @@ func DockerUserAgent(ctx context.Context) string {
 	if kernelVersion, err := kernel.GetKernelVersion(); err == nil {
 		httpVersion = append(httpVersion, useragent.VersionInfo{Name: "kernel", Version: kernelVersion.String()})
 	}
-	httpVersion = append(httpVersion, useragent.VersionInfo{Name: "os", Version: runtime.GOOS})
+	httpVersion = append(httpVersion, useragent.VersionInfo{Name: "os", Version: "linux"})
 	httpVersion = append(httpVersion, useragent.VersionInfo{Name: "arch", Version: runtime.GOARCH})
 
 	dockerUA := useragent.AppendVersions("", httpVersion...)

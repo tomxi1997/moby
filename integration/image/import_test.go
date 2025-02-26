@@ -74,7 +74,7 @@ func TestImportWithCustomPlatform(t *testing.T) {
 		{
 			platform: "",
 			expected: image.V1Image{
-				OS:           runtime.GOOS,
+				OS:           "linux",
 				Architecture: runtime.GOARCH, // this may fail on armhf due to normalization?
 			},
 		},
@@ -87,23 +87,23 @@ func TestImportWithCustomPlatform(t *testing.T) {
 			expectedErr: "is an invalid component",
 		},
 		{
-			platform: runtime.GOOS,
+			platform: "linux",
 			expected: image.V1Image{
-				OS:           runtime.GOOS,
+				OS:           "linux",
 				Architecture: runtime.GOARCH, // this may fail on armhf due to normalization?
 			},
 		},
 		{
-			platform: strings.ToUpper(runtime.GOOS),
+			platform: strings.ToUpper("linux"),
 			expected: image.V1Image{
-				OS:           runtime.GOOS,
+				OS:           "linux",
 				Architecture: runtime.GOARCH, // this may fail on armhf due to normalization?
 			},
 		},
 		{
-			platform: runtime.GOOS + "/sparc64",
+			platform: "linux" + "/sparc64",
 			expected: image.V1Image{
-				OS:           runtime.GOOS,
+				OS:           "linux",
 				Architecture: "sparc64",
 			},
 		},

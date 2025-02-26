@@ -180,7 +180,7 @@ func TestWalkIPAMs(t *testing.T) {
 
 	sort.Strings(ipams)
 	expected := []string{"default", "null"}
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		expected = append(expected, "windows")
 	}
 	assert.Check(t, is.DeepEqual(ipams, expected))

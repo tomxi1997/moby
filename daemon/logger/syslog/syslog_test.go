@@ -111,7 +111,7 @@ func TestValidateSyslogAddress(t *testing.T) {
 	}
 	for _, tc := range tests {
 		tc := tc
-		if tc.skipOn == runtime.GOOS {
+		if tc.skipOn == "linux" {
 			continue
 		}
 		t.Run(tc.address, func(t *testing.T) {

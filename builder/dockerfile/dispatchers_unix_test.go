@@ -18,7 +18,7 @@ func TestNormalizeWorkdir(t *testing.T) {
 	}
 
 	for _, test := range testCases {
-		normalized, err := normalizeWorkdir(runtime.GOOS, test.current, test.requested)
+		normalized, err := normalizeWorkdir("linux", test.current, test.requested)
 
 		if test.expectedError != "" && err == nil {
 			t.Fatalf("NormalizeWorkdir should return an error %s, got nil", test.expectedError)

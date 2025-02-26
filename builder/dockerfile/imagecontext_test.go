@@ -90,7 +90,7 @@ func TestAddFromScratchPopulatesPlatformIfNil(t *testing.T) {
 	assert.Assert(t, ok)
 
 	expectedPlatform := platforms.DefaultSpec()
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		expectedPlatform.OS = "linux"
 	}
 	assert.Equal(t, expectedPlatform.OS, image.OS)

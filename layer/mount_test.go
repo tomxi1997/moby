@@ -13,7 +13,7 @@ import (
 
 func TestMountInit(t *testing.T) {
 	// TODO Windows: Figure out why this is failing
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		t.Skip("Failing on Windows")
 	}
 	ls, _, cleanup := newTestStore(t)
@@ -72,7 +72,7 @@ func TestMountInit(t *testing.T) {
 
 func TestMountSize(t *testing.T) {
 	// TODO Windows: Figure out why this is failing
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		t.Skip("Failing on Windows")
 	}
 	ls, _, cleanup := newTestStore(t)
@@ -121,7 +121,7 @@ func TestMountSize(t *testing.T) {
 
 func TestMountChanges(t *testing.T) {
 	// TODO Windows: Figure out why this is failing
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		t.Skip("Failing on Windows")
 	}
 	ls, _, cleanup := newTestStore(t)
@@ -208,7 +208,7 @@ func TestMountChanges(t *testing.T) {
 
 func TestMountApply(t *testing.T) {
 	// TODO Windows: Figure out why this is failing
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		t.Skip("Failing on Windows")
 	}
 	ls, _, cleanup := newTestStore(t)

@@ -221,7 +221,7 @@ func (daemon *Daemon) ContainerExecStart(ctx context.Context, name string, optio
 	}
 
 	p := &specs.Process{}
-	if runtime.GOOS != "windows" {
+	if "linux" != "windows" {
 		ctr, err := daemon.containerdCli.LoadContainer(ctx, ec.ContainerID)
 		if err != nil {
 			return err

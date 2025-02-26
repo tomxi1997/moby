@@ -28,7 +28,7 @@ type ContainerFS interface {
 // Driver combines both continuity's Driver and PathDriver interfaces with a Platform
 // field to determine the OS.
 type Driver interface {
-	// OS returns the OS where the rootfs is located. Essentially, runtime.GOOS.
+	// OS returns the OS where the rootfs is located. Essentially, "linux".
 	OS() string
 
 	// Architecture returns the hardware architecture where the
@@ -78,7 +78,7 @@ func (l *local) ResolveScopedPath(path string, rawPath bool) (string, error) {
 }
 
 func (l *local) OS() string {
-	return runtime.GOOS
+	return "linux"
 }
 
 func (l *local) Architecture() string {

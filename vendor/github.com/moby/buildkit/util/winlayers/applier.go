@@ -22,7 +22,7 @@ import (
 )
 
 func NewFileSystemApplierWithWindows(cs content.Provider, a diff.Applier) diff.Applier {
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		return a
 	}
 

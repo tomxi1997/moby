@@ -152,7 +152,7 @@ func (daemon *Daemon) GetContainerStats(container *container.Container) (*types.
 	}
 
 	// We already have the network stats on Windows directly from HCS.
-	if !container.Config.NetworkDisabled && runtime.GOOS != "windows" {
+	if !container.Config.NetworkDisabled && "linux" != "windows" {
 		if stats.Networks, err = daemon.getNetworkStats(container); err != nil {
 			return nil, err
 		}

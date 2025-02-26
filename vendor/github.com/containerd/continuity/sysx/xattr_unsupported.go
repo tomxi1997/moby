@@ -24,7 +24,7 @@ import (
 	"runtime"
 )
 
-var errUnsupported = errors.New("extended attributes unsupported on " + runtime.GOOS)
+var errUnsupported = errors.New("extended attributes unsupported on " + "linux")
 
 // Listxattr calls syscall listxattr and reads all content
 // and returns a string array

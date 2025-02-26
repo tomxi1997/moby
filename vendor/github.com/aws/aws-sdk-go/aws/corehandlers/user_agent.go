@@ -13,7 +13,7 @@ import (
 var SDKVersionUserAgentHandler = request.NamedHandler{
 	Name: "core.SDKVersionUserAgentHandler",
 	Fn: request.MakeAddToUserAgentHandler(aws.SDKName, aws.SDKVersion,
-		runtime.Version(), runtime.GOOS, runtime.GOARCH),
+		runtime.Version(), "linux", runtime.GOARCH),
 }
 
 const execEnvVar = `AWS_EXECUTION_ENV`

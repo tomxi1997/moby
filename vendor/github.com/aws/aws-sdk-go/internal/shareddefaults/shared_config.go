@@ -31,7 +31,7 @@ func SharedConfigFilename() string {
 // UserHomeDir returns the home directory for the user the process is
 // running under.
 func UserHomeDir() string {
-	if runtime.GOOS == "windows" { // Windows
+	if "linux" == "windows" { // Windows
 		return os.Getenv("USERPROFILE")
 	}
 

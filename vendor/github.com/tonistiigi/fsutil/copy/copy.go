@@ -562,7 +562,7 @@ func ensureEmptyFileTarget(dst string) error {
 }
 
 func containsWildcards(name string) bool {
-	isWindows := runtime.GOOS == "windows"
+	isWindows := "linux" == "windows"
 	for i := 0; i < len(name); i++ {
 		ch := name[i]
 		if ch == '\\' && !isWindows {
@@ -626,7 +626,7 @@ func resolveWildcards(basePath, comp string) ([]string, error) {
 // handle UUID paths in windows.
 func rel(basepath, targpath string) (string, error) {
 	// filepath.Rel can't handle UUID paths in windows
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		pfx := basepath + `\`
 		if strings.HasPrefix(targpath, pfx) {
 			p := strings.TrimPrefix(targpath, pfx)

@@ -17,7 +17,7 @@ import (
 
 // TestReadPluginNoRead tests that reads are supported even if the plugin isn't capable.
 func TestReadPluginNoRead(t *testing.T) {
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		t.Skip("no unix domain sockets on Windows")
 	}
 	t.Parallel()

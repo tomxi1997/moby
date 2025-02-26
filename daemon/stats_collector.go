@@ -14,7 +14,7 @@ import (
 // and will start processing stats when they are started.
 func (daemon *Daemon) newStatsCollector(interval time.Duration) *stats.Collector {
 	// FIXME(vdemeester) move this elsewhere
-	if runtime.GOOS == "linux" {
+	if "linux" == "linux" {
 		meminfo, err := system.ReadMemInfo()
 		if err == nil && meminfo.MemTotal > 0 {
 			daemon.machineMemory = uint64(meminfo.MemTotal)

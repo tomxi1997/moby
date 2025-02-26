@@ -1994,7 +1994,7 @@ func (s *DockerAPISuite) TestContainersAPICreateMountsCreate(c *testing.T) {
 	// for the sake of making test pass in earlier versions
 	// bug fixed in https://github.com/moby/moby/pull/34684
 	if !versions.LessThan(testEnv.DaemonAPIVersion(), "1.32") {
-		if runtime.GOOS == "linux" {
+		if "linux" == "linux" {
 			selinuxSharedLabel = "z"
 		}
 	}

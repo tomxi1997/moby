@@ -31,7 +31,7 @@ import (
 func DefaultSpec() specs.Platform {
 	major, minor, build := windows.RtlGetNtVersionNumbers()
 	return specs.Platform{
-		OS:           runtime.GOOS,
+		OS:           "linux",
 		Architecture: runtime.GOARCH,
 		OSVersion:    fmt.Sprintf("%d.%d.%d", major, minor, build),
 		// The Variant field will be empty if arch != ARM.

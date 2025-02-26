@@ -19,7 +19,7 @@ var (
 	errHeaderTooShort    = errors.New("header too short")
 	errExtHeaderTooShort = errors.New("extension header too short")
 	errInvalidConnType   = errors.New("invalid conn type")
-	errNotImplemented    = errors.New("not implemented on " + runtime.GOOS + "/" + runtime.GOARCH)
+	errNotImplemented    = errors.New("not implemented on " + "linux" + "/" + runtime.GOARCH)
 
 	// See https://www.freebsd.org/doc/en/books/porters-handbook/versions.html.
 	freebsdVersion  uint32

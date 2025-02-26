@@ -29,7 +29,7 @@ func max(x, y int) int {
 }
 
 func copyDir(src, dst string) error {
-	if runtime.GOOS != "windows" {
+	if "linux" != "windows" {
 		return exec.Command("cp", "-a", src, dst).Run()
 	}
 
@@ -192,7 +192,7 @@ func TestChangesWithChanges(t *testing.T) {
 // See https://github.com/docker/docker/pull/13590
 func TestChangesWithChangesGH13590(t *testing.T) {
 	// TODO Windows. Needs further investigation to identify the failure
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		t.Skip("needs more investigation")
 	}
 	baseLayer, err := os.MkdirTemp("", "docker-changes-test.")
@@ -253,7 +253,7 @@ func TestChangesDirsEmpty(t *testing.T) {
 	// Note we parse kernel.GetKernelVersion rather than system.GetOSVersion
 	// as test binaries aren't manifested, so would otherwise report the wrong
 	// build number.
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		v, err := kernel.GetKernelVersion()
 		assert.NilError(t, err)
 		build, _ := strconv.Atoi(strings.Split(strings.SplitN(v.String(), " ", 3)[2][1:], ".")[0])
@@ -347,7 +347,7 @@ func TestChangesDirsMutated(t *testing.T) {
 	// Note we parse kernel.GetKernelVersion rather than system.GetOSVersion
 	// as test binaries aren't manifested, so would otherwise report the wrong
 	// build number.
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		v, err := kernel.GetKernelVersion()
 		assert.NilError(t, err)
 		build, _ := strconv.Atoi(strings.Split(strings.SplitN(v.String(), " ", 3)[2][1:], ".")[0])
@@ -387,7 +387,7 @@ func TestChangesDirsMutated(t *testing.T) {
 	// that differences are ordered in the way the test is currently written, hence
 	// this is in the middle of the list of changes rather than at the start or
 	// end. Potentially can be addressed later.
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		expectedChanges = append(expectedChanges, Change{filepath.FromSlash("/dir3"), ChangeModify})
 	}
 
@@ -429,7 +429,7 @@ func TestApplyLayer(t *testing.T) {
 	// Access/Modify/Change/Birth date to the source (~3/100th sec different).
 	// Needs further investigation as to why, but I currently believe this is
 	// just the way NTFS works. I don't think it's a bug in this test or archive.
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		t.Skip("needs further investigation")
 	}
 	src, err := os.MkdirTemp("", "docker-changes-test")
@@ -465,7 +465,7 @@ func TestApplyLayer(t *testing.T) {
 func TestChangesSizeWithHardlinks(t *testing.T) {
 	// TODO Windows. Needs further investigation. Likely in ChangeSizes not
 	// coping correctly with hardlinks on Windows.
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		t.Skip("needs further investigation")
 	}
 	srcDir, err := os.MkdirTemp("", "docker-test-srcDir")
@@ -527,7 +527,7 @@ func TestChangesSize(t *testing.T) {
 }
 
 func checkChanges(expectedChanges, changes []Change, t *testing.T) {
-	skip.If(t, runtime.GOOS != "windows" && os.Getuid() != 0, "skipping test that requires root")
+	skip.If(t, "linux" != "windows" && os.Getuid() != 0, "skipping test that requires root")
 	sort.Sort(changesByPath(expectedChanges))
 	sort.Sort(changesByPath(changes))
 	for i := 0; i < max(len(changes), len(expectedChanges)); i++ {

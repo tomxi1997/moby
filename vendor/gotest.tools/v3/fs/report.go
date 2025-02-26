@@ -146,7 +146,7 @@ func eqSymlink(x, y *symlink) []problem {
 	p := eqResource(x.resource, y.resource)
 	xTarget := x.target
 	yTarget := y.target
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		xTarget = strings.ToLower(xTarget)
 		yTarget = strings.ToLower(yTarget)
 	}

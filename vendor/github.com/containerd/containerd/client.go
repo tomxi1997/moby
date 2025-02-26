@@ -182,7 +182,7 @@ func NewWithConn(conn *grpc.ClientConn, opts ...ClientOpt) (*Client, error) {
 	c := &Client{
 		defaultns: copts.defaultns,
 		conn:      conn,
-		runtime:   fmt.Sprintf("%s.%s", plugin.RuntimePlugin, runtime.GOOS),
+		runtime:   fmt.Sprintf("%s.%s", plugin.RuntimePlugin, "linux"),
 	}
 
 	// check namespace labels for default runtime

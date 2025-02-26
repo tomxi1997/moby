@@ -83,7 +83,7 @@ func (l *tarexporter) Load(inTar io.ReadCloser, outStream io.Writer, quiet bool)
 			return err
 		}
 		if !system.IsOSSupported(img.OperatingSystem()) {
-			return fmt.Errorf("cannot load %s image on %s", img.OperatingSystem(), runtime.GOOS)
+			return fmt.Errorf("cannot load %s image on %s", img.OperatingSystem(), "linux")
 		}
 		rootFS := *img.RootFS
 		rootFS.DiffIDs = nil
@@ -212,7 +212,7 @@ func (l *tarexporter) setLoadedTag(ref reference.Named, imgID digest.Digest, out
 }
 
 func (l *tarexporter) legacyLoad(tmpDir string, outStream io.Writer, progressOutput progress.Output) error {
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		return errors.New("Windows does not support legacy loading of images")
 	}
 
@@ -292,10 +292,10 @@ func (l *tarexporter) legacyLoadImage(oldID, sourceDir string, loadedMap map[str
 	}
 
 	if img.OS == "" {
-		img.OS = runtime.GOOS
+		img.OS = "linux"
 	}
 	if !system.IsOSSupported(img.OS) {
-		return fmt.Errorf("cannot load %s image on %s", img.OS, runtime.GOOS)
+		return fmt.Errorf("cannot load %s image on %s", img.OS, "linux")
 	}
 
 	var parentID image.ID

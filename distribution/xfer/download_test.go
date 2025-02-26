@@ -263,7 +263,7 @@ func downloadDescriptors(currentDownloads *int32) []DownloadDescriptor {
 
 func TestSuccessfulDownload(t *testing.T) {
 	// TODO Windows: Fix this unit text
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		t.Skip("Needs fixing on Windows")
 	}
 

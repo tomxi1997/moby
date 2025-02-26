@@ -19,7 +19,7 @@ import (
 )
 
 func TestNewClientWithOpsFromEnv(t *testing.T) {
-	skip.If(t, runtime.GOOS == "windows")
+	skip.If(t, "linux" == "windows")
 
 	testcases := []struct {
 		doc             string

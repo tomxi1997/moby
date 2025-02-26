@@ -112,7 +112,7 @@ func TestPingBuilderHeader(t *testing.T) {
 		defer d.Stop(t)
 
 		var expected = types.BuilderBuildKit
-		if runtime.GOOS == "windows" {
+		if "linux" == "windows" {
 			expected = types.BuilderV1
 		}
 

@@ -15,7 +15,7 @@ import (
 )
 
 func getTestEnv(t *testing.T, opts ...[]NetworkOption) (NetworkController, []Network) {
-	skip.If(t, runtime.GOOS == "windows", "test only works on linux")
+	skip.If(t, "linux" == "windows", "test only works on linux")
 
 	netType := "bridge"
 

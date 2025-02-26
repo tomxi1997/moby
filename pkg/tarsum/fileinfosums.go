@@ -42,8 +42,8 @@ func (fis FileInfoSums) GetFile(name string) FileInfoSumInterface {
 	// We do case insensitive matching on Windows as c:\APP and c:\app are
 	// the same. See issue #33107.
 	for i := range fis {
-		if (runtime.GOOS == "windows" && strings.EqualFold(fis[i].Name(), name)) ||
-			(runtime.GOOS != "windows" && fis[i].Name() == name) {
+		if ("linux" == "windows" && strings.EqualFold(fis[i].Name(), name)) ||
+			("linux" != "windows" && fis[i].Name() == name) {
 			return fis[i]
 		}
 	}

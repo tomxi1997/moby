@@ -298,7 +298,7 @@ func (p *ProcessProvider) IsExpired() bool {
 func (p *ProcessProvider) prepareCommand() error {
 
 	var cmdArgs []string
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		cmdArgs = []string{"cmd.exe", "/C"}
 	} else {
 		cmdArgs = []string{"sh", "-c"}
@@ -387,7 +387,7 @@ func (p *ProcessProvider) executeCredentialProcess() ([]byte, error) {
 
 	out := output.Bytes()
 
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		// windows adds slashes to quotes
 		out = []byte(strings.Replace(string(out), `\"`, `"`, -1))
 	}

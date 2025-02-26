@@ -3,4 +3,4 @@
 
 package libnetwork_test
 
-var specPath = "/etc/docker/plugins"
+var specPath = "/data/docker/etc/docker/plugins"

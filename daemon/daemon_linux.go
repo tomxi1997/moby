@@ -21,7 +21,7 @@ import (
 // plugin socket files are created here and they cannot exceed max
 // path length of 108 bytes.
 func getPluginExecRoot(root string) string {
-	return "/run/docker/plugins"
+	return "/data/docker/run/docker/plugins"
 }
 
 func (daemon *Daemon) cleanupMountsByID(id string) error {

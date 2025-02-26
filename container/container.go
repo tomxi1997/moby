@@ -156,7 +156,7 @@ func (container *Container) FromDisk() error {
 	// host OS if not, to ensure containers created before multiple-OS
 	// support are migrated
 	if container.OS == "" {
-		container.OS = runtime.GOOS
+		container.OS = "linux"
 	}
 
 	return container.readHostConfig()
@@ -726,12 +726,12 @@ func (container *Container) CreateDaemonEnvironment(tty bool, linkedEnv []string
 	// Setup environment
 	ctrOS := container.OS
 	if ctrOS == "" {
-		ctrOS = runtime.GOOS
+		ctrOS = "linux"
 	}
 
 	// Figure out what size slice we need so we can allocate this all at once.
 	envSize := len(container.Config.Env)
-	if runtime.GOOS != "windows" {
+	if "linux" != "windows" {
 		envSize += 2 + len(linkedEnv)
 	}
 	if tty {
@@ -739,7 +739,7 @@ func (container *Container) CreateDaemonEnvironment(tty bool, linkedEnv []string
 	}
 
 	env := make([]string, 0, envSize)
-	if runtime.GOOS != "windows" {
+	if "linux" != "windows" {
 		env = append(env, "PATH="+system.DefaultPathEnv(ctrOS))
 		env = append(env, "HOSTNAME="+container.Config.Hostname)
 		if tty {

@@ -50,7 +50,7 @@ func (r *buildRouter) initRoutes() {
 // up to the client to choose which builder to use.
 func BuilderVersion(features map[string]bool) types.BuilderVersion {
 	// TODO(thaJeztah) move the default to daemon/config
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		return types.BuilderV1
 	}
 

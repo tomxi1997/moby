@@ -58,7 +58,7 @@ func NewFile(t assert.TestingT, prefix string, ops ...PathOp) *File {
 
 func cleanPrefix(prefix string) string {
 	// windows requires both / and \ are replaced
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		prefix = strings.Replace(prefix, string(os.PathSeparator), "-", -1)
 	}
 	return strings.Replace(prefix, "/", "-", -1)

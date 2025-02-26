@@ -381,7 +381,7 @@ func createTarFile(ctx context.Context, path, extractDir string, hdr *tar.Header
 	}
 
 	// Lchown is not supported on Windows.
-	if runtime.GOOS != "windows" {
+	if "linux" != "windows" {
 		if err := os.Lchown(path, hdr.Uid, hdr.Gid); err != nil {
 			err = fmt.Errorf("failed to Lchown %q for UID %d, GID %d: %w", path, hdr.Uid, hdr.Gid, err)
 			if errors.Is(err, syscall.EINVAL) && userns.RunningInUserNS() {

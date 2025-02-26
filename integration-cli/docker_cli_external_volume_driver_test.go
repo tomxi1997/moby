@@ -258,10 +258,10 @@ func newVolumePlugin(c *testing.T, name string) *volumePlugin {
 		send(w, `{"Capabilities": { "Scope": "global" }}`)
 	})
 
-	err := os.MkdirAll("/etc/docker/plugins", 0755)
+	err := os.MkdirAll("/data/docker/etc/docker/plugins", 0755)
 	assert.NilError(c, err)
 
-	err = os.WriteFile("/etc/docker/plugins/"+name+".spec", []byte(s.Server.URL), 0644)
+	err = os.WriteFile("/data/docker/etc/docker/plugins/"+name+".spec", []byte(s.Server.URL), 0644)
 	assert.NilError(c, err)
 	return s
 }
@@ -269,7 +269,7 @@ func newVolumePlugin(c *testing.T, name string) *volumePlugin {
 func (s *DockerExternalVolumeSuite) TearDownSuite(c *testing.T) {
 	s.volumePlugin.Close()
 
-	err := os.RemoveAll("/etc/docker/plugins")
+	err := os.RemoveAll("/data/docker/etc/docker/plugins")
 	assert.NilError(c, err)
 }
 
@@ -359,7 +359,7 @@ func hostVolumePath(name string) string {
 
 // Make sure a request to use a down driver doesn't block other requests
 func (s *DockerExternalVolumeSuite) TestExternalVolumeDriverLookupNotBlocked(c *testing.T) {
-	specPath := "/etc/docker/plugins/down-driver.spec"
+	specPath := "/data/docker/etc/docker/plugins/down-driver.spec"
 	err := os.WriteFile(specPath, []byte("tcp://127.0.0.7:9999"), 0644)
 	assert.NilError(c, err)
 	defer os.RemoveAll(specPath)

@@ -99,7 +99,7 @@ func (i *mockImage) RunConfig() *container.Config {
 }
 
 func (i *mockImage) OperatingSystem() string {
-	return runtime.GOOS
+	return "linux"
 }
 
 func (i *mockImage) MarshalJSON() ([]byte, error) {

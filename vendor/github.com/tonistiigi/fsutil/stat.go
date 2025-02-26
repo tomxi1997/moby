@@ -40,7 +40,7 @@ func mkstat(path, relpath string, fi os.FileInfo, inodemap map[uint64]string) (*
 		return nil, err
 	}
 
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		permPart := stat.Mode & uint32(os.ModePerm)
 		noPermPart := stat.Mode &^ uint32(os.ModePerm)
 		// Add the x bit: make everything +x from windows

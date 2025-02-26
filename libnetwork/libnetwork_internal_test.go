@@ -348,7 +348,7 @@ func TestAuxAddresses(t *testing.T) {
 }
 
 func TestSRVServiceQuery(t *testing.T) {
-	skip.If(t, runtime.GOOS == "windows", "test only works on linux")
+	skip.If(t, "linux" == "windows", "test only works on linux")
 
 	c, err := New()
 	if err != nil {
@@ -446,7 +446,7 @@ func TestSRVServiceQuery(t *testing.T) {
 }
 
 func TestServiceVIPReuse(t *testing.T) {
-	skip.If(t, runtime.GOOS == "windows", "test only works on linux")
+	skip.If(t, "linux" == "windows", "test only works on linux")
 
 	c, err := New()
 	if err != nil {
@@ -561,7 +561,7 @@ func TestServiceVIPReuse(t *testing.T) {
 }
 
 func TestIpamReleaseOnNetDriverFailures(t *testing.T) {
-	skip.If(t, runtime.GOOS == "windows", "test only works on linux")
+	skip.If(t, "linux" == "windows", "test only works on linux")
 
 	if !testutils.IsRunningInContainer() {
 		defer testutils.SetupTestOSContext(t)()

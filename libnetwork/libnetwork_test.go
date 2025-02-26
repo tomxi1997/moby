@@ -31,7 +31,7 @@ import (
 var controller libnetwork.NetworkController
 
 func TestMain(m *testing.M) {
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		logrus.Info("Test suite does not currently support windows")
 		os.Exit(0)
 	}

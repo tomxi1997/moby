@@ -28,7 +28,7 @@ func (v *Validator) HandleChange(kind ChangeKind, p string, fi os.FileInfo, err 
 	if v.parentDirs == nil {
 		v.parentDirs = make([]parent, 1, 10)
 	}
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		p = strings.Replace(p, "\\", "", -1)
 	}
 	if p != path.Clean(p) {

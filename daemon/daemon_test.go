@@ -304,7 +304,7 @@ func TestValidateContainerIsolation(t *testing.T) {
 	d := Daemon{}
 
 	_, err := d.verifyContainerSettings(&containertypes.HostConfig{Isolation: containertypes.Isolation("invalid")}, nil, false)
-	assert.Check(t, is.Error(err, "invalid isolation 'invalid' on "+runtime.GOOS))
+	assert.Check(t, is.Error(err, "invalid isolation 'invalid' on "+"linux"))
 }
 
 func TestFindNetworkErrorType(t *testing.T) {

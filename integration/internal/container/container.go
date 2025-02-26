@@ -27,7 +27,7 @@ type TestContainerConfig struct {
 func create(ctx context.Context, t *testing.T, client client.APIClient, ops ...func(*TestContainerConfig)) (container.CreateResponse, error) {
 	t.Helper()
 	cmd := []string{"top"}
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		cmd = []string{"sleep", "240"}
 	}
 	config := &TestContainerConfig{

@@ -114,7 +114,7 @@ func (daemon *Daemon) create(opts createOpts) (retC *container.Container, retErr
 		img   *image.Image
 		imgID image.ID
 		err   error
-		os    = runtime.GOOS
+		os    = "linux"
 	)
 
 	if opts.params.Config.Image != "" {

@@ -88,7 +88,7 @@ func WithCheckpointTask(ctx context.Context, client *Client, c *containers.Conta
 		return err
 	}
 	desc.Platform = &imagespec.Platform{
-		OS:           runtime.GOOS,
+		OS:           "linux",
 		Architecture: runtime.GOARCH,
 	}
 	index.Manifests = append(index.Manifests, desc)
@@ -108,7 +108,7 @@ func WithCheckpointRuntime(ctx context.Context, client *Client, c *containers.Co
 			return err
 		}
 		desc.Platform = &imagespec.Platform{
-			OS:           runtime.GOOS,
+			OS:           "linux",
 			Architecture: runtime.GOARCH,
 		}
 		index.Manifests = append(index.Manifests, desc)
@@ -132,7 +132,7 @@ func WithCheckpointRW(ctx context.Context, client *Client, c *containers.Contain
 
 	}
 	rw.Platform = &imagespec.Platform{
-		OS:           runtime.GOOS,
+		OS:           "linux",
 		Architecture: runtime.GOARCH,
 	}
 	index.Manifests = append(index.Manifests, rw)

@@ -178,7 +178,7 @@ func parseINI(ini io.Reader) (map[string]map[string]string, error) {
 // sdkConfigPath tries to guess where the gcloud config is located.
 // It can be overridden during tests.
 var sdkConfigPath = func() (string, error) {
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		return filepath.Join(os.Getenv("APPDATA"), "gcloud"), nil
 	}
 	homeDir := guessUnixHomeDir()

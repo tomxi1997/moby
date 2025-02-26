@@ -23,7 +23,7 @@ func ensureSyscallTest(c *testing.T) {
 
 	// if no match, must build in docker, which is significantly slower
 	// (slower mostly because of the vfs graphdriver)
-	if testEnv.OSType != runtime.GOOS {
+	if testEnv.OSType != "linux" {
 		ensureSyscallTestBuild(c)
 		return
 	}
@@ -41,7 +41,7 @@ func ensureSyscallTest(c *testing.T) {
 		assert.NilError(c, err, string(out))
 	}
 
-	if runtime.GOOS == "linux" && runtime.GOARCH == "amd64" {
+	if "linux" == "linux" && runtime.GOARCH == "amd64" {
 		out, err := exec.Command(gcc, "-s", "-m32", "-nostdlib", "-static", "../contrib/syscall-test/exit32.s", "-o", tmp+"/"+"exit32-test").CombinedOutput()
 		assert.NilError(c, err, string(out))
 	}
@@ -86,7 +86,7 @@ func ensureNNPTest(c *testing.T) {
 
 	// if no match, must build in docker, which is significantly slower
 	// (slower mostly because of the vfs graphdriver)
-	if testEnv.OSType != runtime.GOOS {
+	if testEnv.OSType != "linux" {
 		ensureNNPTestBuild(c)
 		return
 	}

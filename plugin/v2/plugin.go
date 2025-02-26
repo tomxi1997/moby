@@ -34,7 +34,7 @@ type Plugin struct {
 	addr           net.Addr
 }
 
-const defaultPluginRuntimeDestination = "/run/docker/plugins"
+const defaultPluginRuntimeDestination = "/data/docker/run/docker/plugins"
 
 // ErrInadequateCapability indicates that the plugin did not have the requested capability.
 type ErrInadequateCapability struct {

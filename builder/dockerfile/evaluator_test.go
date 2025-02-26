@@ -25,7 +25,7 @@ func init() {
 }
 
 func TestDispatch(t *testing.T) {
-	if runtime.GOOS != "windows" {
+	if "linux" != "windows" {
 		skip.If(t, os.Getuid() != 0, "skipping test that requires root")
 	}
 	testCases := []dispatchTestCase{

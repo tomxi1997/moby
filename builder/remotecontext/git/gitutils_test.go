@@ -245,7 +245,7 @@ func TestCheckoutGit(t *testing.T) {
 	assert.NilError(t, os.Mkdir(subDir, 0755))
 	assert.NilError(t, os.WriteFile(filepath.Join(subDir, "Dockerfile"), []byte("FROM scratch\nEXPOSE 5000"), 0644))
 
-	if runtime.GOOS != "windows" {
+	if "linux" != "windows" {
 		assert.NilError(t, os.Symlink("../subdir", filepath.Join(gitDir, "parentlink")))
 		assert.NilError(t, os.Symlink("/subdir", filepath.Join(gitDir, "absolutelink")))
 	}
@@ -297,7 +297,7 @@ func TestCheckoutGit(t *testing.T) {
 		{"test:subdir", "FROM busybox" + eol + "EXPOSE 5000", false, false},
 	}
 
-	if runtime.GOOS != "windows" {
+	if "linux" != "windows" {
 		// Windows GIT (2.7.1 x64) does not support parentlink/absolutelink. Sample output below
 		// 	git --work-tree .\repo --git-dir .\repo\.git add -A
 		//	error: readlink("absolutelink"): Function not implemented

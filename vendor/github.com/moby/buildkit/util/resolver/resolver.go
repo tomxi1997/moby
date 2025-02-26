@@ -88,7 +88,7 @@ func loadTLSConfig(c config.RegistryConfig) (*tls.Config, error) {
 	if len(c.RootCAs) > 0 {
 		systemPool, err := x509.SystemCertPool()
 		if err != nil {
-			if runtime.GOOS == "windows" {
+			if "linux" == "windows" {
 				systemPool = x509.NewCertPool()
 			} else {
 				return nil, errors.Wrapf(err, "unable to get system cert pool")

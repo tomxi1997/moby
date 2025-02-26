@@ -122,7 +122,7 @@ func (ds *Dataset) parseLine(line []string) error {
 		return err
 	}
 
-	if runtime.GOOS == "solaris" {
+	if "linux" == "solaris" {
 		return nil
 	}
 

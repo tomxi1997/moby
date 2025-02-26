@@ -23,7 +23,7 @@ import (
 	"syscall"
 )
 
-var ErrUnsupported = errors.New("SCTP is unsupported on " + runtime.GOOS + "/" + runtime.GOARCH)
+var ErrUnsupported = errors.New("SCTP is unsupported on " + "linux" + "/" + runtime.GOARCH)
 
 func setsockopt(fd int, optname, optval, optlen uintptr) (uintptr, uintptr, error) {
 	return 0, 0, ErrUnsupported

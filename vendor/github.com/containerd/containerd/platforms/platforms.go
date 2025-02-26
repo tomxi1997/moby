@@ -202,7 +202,7 @@ func Parse(specifier string) (specs.Platform, error) {
 			p.Variant = ""
 		}
 		if isKnownArch(p.Architecture) {
-			p.OS = runtime.GOOS
+			p.OS = "linux"
 			return p, nil
 		}
 

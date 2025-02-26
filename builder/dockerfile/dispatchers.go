@@ -243,7 +243,7 @@ func (d *dispatchRequest) getImageOrStage(name string, platform *specs.Platform)
 	// Windows cannot support a container with no base image.
 	if name == api.NoBaseImageSpecifier {
 		// Windows supports scratch. What is not supported is running containers from it.
-		if runtime.GOOS == "windows" {
+		if "linux" == "windows" {
 			return nil, errors.New("Windows does not support FROM scratch")
 		}
 
@@ -252,7 +252,7 @@ func (d *dispatchRequest) getImageOrStage(name string, platform *specs.Platform)
 		if platform != nil {
 			imageImage.OS = platform.OS
 		} else {
-			imageImage.OS = runtime.GOOS
+			imageImage.OS = "linux"
 		}
 		return builder.Image(imageImage), nil
 	}

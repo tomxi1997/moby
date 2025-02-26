@@ -128,11 +128,11 @@ func (s *DockerAPISuite) TestAPIStatsNetworkStats(c *testing.T) {
 	}
 
 	countParam := "-c"
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		countParam = "-n" // Ping count parameter is -n on Windows
 	}
 	pingout, err := exec.Command("ping", contIP, countParam, strconv.Itoa(numPings)).CombinedOutput()
-	if err != nil && runtime.GOOS == "linux" {
+	if err != nil && "linux" == "linux" {
 		// If it fails then try a work-around, but just for linux.
 		// If this fails too then go back to the old error for reporting.
 		//

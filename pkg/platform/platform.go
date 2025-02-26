@@ -19,5 +19,5 @@ func init() {
 	if err != nil {
 		logrus.Errorf("Could not read system architecture info: %v", err)
 	}
-	OSType = runtime.GOOS
+	OSType = "linux"
 }

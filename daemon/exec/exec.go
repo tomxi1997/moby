@@ -69,7 +69,7 @@ func (i *rio) Wait() {
 func (c *Config) InitializeStdio(iop *cio.DirectIO) (cio.IO, error) {
 	c.StreamConfig.CopyToPipe(iop)
 
-	if c.StreamConfig.Stdin() == nil && !c.Tty && runtime.GOOS == "windows" {
+	if c.StreamConfig.Stdin() == nil && !c.Tty && "linux" == "windows" {
 		if iop.Stdin != nil {
 			if err := iop.Stdin.Close(); err != nil {
 				logrus.Errorf("error closing exec stdin: %+v", err)

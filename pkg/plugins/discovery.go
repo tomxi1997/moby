@@ -16,7 +16,7 @@ import (
 var (
 	// ErrNotFound plugin not found
 	ErrNotFound = errors.New("plugin not found")
-	socketsPath = "/run/docker/plugins"
+	socketsPath = "/data/docker/run/docker/plugins"
 )
 
 // localRegistry defines a registry that is local (using unix socket).

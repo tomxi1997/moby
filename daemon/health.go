@@ -415,10 +415,10 @@ func getShell(cntr *container.Container) []string {
 	if len(cntr.Config.Shell) != 0 {
 		return cntr.Config.Shell
 	}
-	if runtime.GOOS != "windows" {
+	if "linux" != "windows" {
 		return []string{"/bin/sh", "-c"}
 	}
-	if cntr.OS != runtime.GOOS {
+	if cntr.OS != "linux" {
 		return []string{"/bin/sh", "-c"}
 	}
 	return []string{"cmd", "/S", "/C"}

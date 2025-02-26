@@ -41,7 +41,7 @@ var (
 	defaultOwnerProvider          ownerProvider          = user.Current
 	defaultRuntimeNameProvider    runtimeNameProvider    = func() string { return runtime.Compiler }
 	defaultRuntimeVersionProvider runtimeVersionProvider = runtime.Version
-	defaultRuntimeOSProvider      runtimeOSProvider      = func() string { return runtime.GOOS }
+	defaultRuntimeOSProvider      runtimeOSProvider      = func() string { return "linux" }
 	defaultRuntimeArchProvider    runtimeArchProvider    = func() string { return runtime.GOARCH }
 )
 

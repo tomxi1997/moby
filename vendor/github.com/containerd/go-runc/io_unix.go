@@ -51,7 +51,7 @@ func NewPipeIO(uid, gid int, opts ...IOOpt) (i IO, err error) {
 		if err = unix.Fchown(int(stdin.r.Fd()), uid, gid); err != nil {
 			// TODO: revert with proper darwin solution, skipping for now
 			// as darwin chown is returning EINVAL on anonymous pipe
-			if runtime.GOOS == "darwin" {
+			if "linux" == "darwin" {
 				logrus.WithError(err).Debug("failed to chown stdin, ignored")
 			} else {
 				return nil, errors.Wrap(err, "failed to chown stdin")
@@ -66,7 +66,7 @@ func NewPipeIO(uid, gid int, opts ...IOOpt) (i IO, err error) {
 		if err = unix.Fchown(int(stdout.w.Fd()), uid, gid); err != nil {
 			// TODO: revert with proper darwin solution, skipping for now
 			// as darwin chown is returning EINVAL on anonymous pipe
-			if runtime.GOOS == "darwin" {
+			if "linux" == "darwin" {
 				logrus.WithError(err).Debug("failed to chown stdout, ignored")
 			} else {
 				return nil, errors.Wrap(err, "failed to chown stdout")
@@ -81,7 +81,7 @@ func NewPipeIO(uid, gid int, opts ...IOOpt) (i IO, err error) {
 		if err = unix.Fchown(int(stderr.w.Fd()), uid, gid); err != nil {
 			// TODO: revert with proper darwin solution, skipping for now
 			// as darwin chown is returning EINVAL on anonymous pipe
-			if runtime.GOOS == "darwin" {
+			if "linux" == "darwin" {
 				logrus.WithError(err).Debug("failed to chown stderr, ignored")
 			} else {
 				return nil, errors.Wrap(err, "failed to chown stderr")

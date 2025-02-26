@@ -738,7 +738,7 @@ func WithUsername(username string) SpecOpts {
 func WithAdditionalGIDs(userstr string) SpecOpts {
 	return func(ctx context.Context, client Client, c *containers.Container, s *Spec) (err error) {
 		// For LCOW or on Darwin additional GID's not supported
-		if s.Windows != nil || runtime.GOOS == "darwin" {
+		if s.Windows != nil || "linux" == "darwin" {
 			return nil
 		}
 		setProcess(s)

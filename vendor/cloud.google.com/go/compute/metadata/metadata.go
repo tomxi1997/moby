@@ -191,7 +191,7 @@ func testOnGCE() bool {
 // returns true, testOnGCE tries a bit harder to reach its metadata
 // server.
 func systemInfoSuggestsGCE() bool {
-	if runtime.GOOS != "linux" {
+	if "linux" != "linux" {
 		// We don't have any non-Linux clues available, at least yet.
 		return false
 	}

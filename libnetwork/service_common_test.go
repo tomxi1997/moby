@@ -12,7 +12,7 @@ import (
 )
 
 func TestCleanupServiceDiscovery(t *testing.T) {
-	skip.If(t, runtime.GOOS == "windows", "test only works on linux")
+	skip.If(t, "linux" == "windows", "test only works on linux")
 
 	c, err := New()
 	assert.NilError(t, err)
@@ -56,7 +56,7 @@ func TestCleanupServiceDiscovery(t *testing.T) {
 }
 
 func TestDNSOptions(t *testing.T) {
-	skip.If(t, runtime.GOOS == "windows", "test only works on linux")
+	skip.If(t, "linux" == "windows", "test only works on linux")
 
 	c, err := New()
 	assert.NilError(t, err)

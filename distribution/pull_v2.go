@@ -528,7 +528,7 @@ func (p *puller) pullSchema1(ctx context.Context, ref reference.Reference, unver
 		// Early bath if the requested OS doesn't match that of the configuration.
 		// This avoids doing the download, only to potentially fail later.
 		if !system.IsOSSupported(platform.OS) {
-			return "", "", fmt.Errorf("cannot download image with operating system %q when requesting %q", runtime.GOOS, platform.OS)
+			return "", "", fmt.Errorf("cannot download image with operating system %q when requesting %q", "linux", platform.OS)
 		}
 	}
 
@@ -682,7 +682,7 @@ func (p *puller) pullSchema2Layers(ctx context.Context, target distribution.Desc
 		configPlatform   *specs.Platform // for LCOW when registering downloaded layers
 	)
 
-	layerStoreOS := runtime.GOOS
+	layerStoreOS := "linux"
 	if platform != nil {
 		layerStoreOS = platform.OS
 	}
@@ -695,7 +695,7 @@ func (p *puller) pullSchema2Layers(ctx context.Context, target distribution.Desc
 	// which aren't suitable for NTFS. At some point in the future, if a similar
 	// check to block Windows images being pulled on Linux is implemented, it
 	// may be necessary to perform the same type of serialisation.
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		configJSON, configRootFS, configPlatform, err = receiveConfig(configChan, configErrChan)
 		if err != nil {
 			return "", err
@@ -1052,7 +1052,7 @@ func fixManifestLayers(m *schema1.Manifest) error {
 		}
 	}
 
-	if imgs[len(imgs)-1].Parent != "" && runtime.GOOS != "windows" {
+	if imgs[len(imgs)-1].Parent != "" && "linux" != "windows" {
 		// Windows base layer can point to a base layer parent that is not in manifest.
 		return errors.New("invalid parent ID in the base layer of the image")
 	}

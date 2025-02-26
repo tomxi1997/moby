@@ -947,7 +947,7 @@ func (s *DockerCLIBuildSuite) TestBuildAddBadLinks(c *testing.T) {
 	defer os.RemoveAll(tempDir)
 
 	var symlinkTarget string
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		var driveLetter string
 		if abs, err := filepath.Abs(tempDir); err != nil {
 			c.Fatal(err)
@@ -3543,7 +3543,7 @@ func (s *DockerCLIBuildSuite) TestBuildStderr(c *testing.T) {
 	result.Assert(c, icmd.Success)
 
 	// Windows to non-Windows should have a security warning
-	if runtime.GOOS == "windows" && testEnv.OSType != "windows" && !strings.Contains(result.Stdout(), "SECURITY WARNING:") {
+	if "linux" == "windows" && testEnv.OSType != "windows" && !strings.Contains(result.Stdout(), "SECURITY WARNING:") {
 		c.Fatalf("Stdout contains unexpected output: %q", result.Stdout())
 	}
 

@@ -14,7 +14,7 @@ const defaultRootDirMode = os.ModeDir | 0700
 var defaultSymlinkMode = os.ModeSymlink | 0777
 
 func init() {
-	switch runtime.GOOS {
+	switch "linux" {
 	case "darwin":
 		defaultSymlinkMode = os.ModeSymlink | 0755
 	}

@@ -29,7 +29,7 @@ var tmp string
 
 func init() {
 	tmp = "/tmp/"
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		tmp = os.Getenv("TEMP") + `\`
 	}
 }
@@ -130,7 +130,7 @@ func TestDecompressStreamBzip2(t *testing.T) {
 }
 
 func TestDecompressStreamXz(t *testing.T) {
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		t.Skip("Xz not present in msys2")
 	}
 	testDecompressStream(t, "xz", "xz -f")
@@ -249,7 +249,7 @@ func TestCmdStreamLargeStderr(t *testing.T) {
 
 func TestCmdStreamBad(t *testing.T) {
 	// TODO Windows: Figure out why this is failing in CI but not locally
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		t.Skip("Failing on Windows CI machines")
 	}
 	badCmd := exec.Command("sh", "-c", "echo hello; echo >&2 error couldn\\'t reverse the phase pulser; exit 1")
@@ -293,7 +293,7 @@ func TestUntarPathWithInvalidDest(t *testing.T) {
 	// Translate back to Unix semantics as next exec.Command is run under sh
 	srcFileU := srcFile
 	tarFileU := tarFile
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		tarFileU = "/tmp/" + filepath.Base(filepath.Dir(tarFile)) + "/src.tar"
 		srcFileU = "/tmp/" + filepath.Base(filepath.Dir(srcFile)) + "/src"
 	}
@@ -321,7 +321,7 @@ func TestUntarPathWithInvalidSrc(t *testing.T) {
 }
 
 func TestUntarPath(t *testing.T) {
-	skip.If(t, runtime.GOOS != "windows" && os.Getuid() != 0, "skipping test that requires root")
+	skip.If(t, "linux" != "windows" && os.Getuid() != 0, "skipping test that requires root")
 	tmpFolder, err := os.MkdirTemp("", "docker-archive-test")
 	assert.NilError(t, err)
 	defer os.RemoveAll(tmpFolder)
@@ -338,7 +338,7 @@ func TestUntarPath(t *testing.T) {
 	// Translate back to Unix semantics as next exec.Command is run under sh
 	srcFileU := srcFile
 	tarFileU := tarFile
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		tarFileU = "/tmp/" + filepath.Base(filepath.Dir(tarFile)) + "/src.tar"
 		srcFileU = "/tmp/" + filepath.Base(filepath.Dir(srcFile)) + "/src"
 	}
@@ -371,7 +371,7 @@ func TestUntarPathWithDestinationFile(t *testing.T) {
 	// Translate back to Unix semantics as next exec.Command is run under sh
 	srcFileU := srcFile
 	tarFileU := tarFile
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		tarFileU = "/tmp/" + filepath.Base(filepath.Dir(tarFile)) + "/src.tar"
 		srcFileU = "/tmp/" + filepath.Base(filepath.Dir(srcFile)) + "/src"
 	}
@@ -407,7 +407,7 @@ func TestUntarPathWithDestinationSrcFileAsFolder(t *testing.T) {
 	// Translate back to Unix semantics as next exec.Command is run under sh
 	srcFileU := srcFile
 	tarFileU := tarFile
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		tarFileU = "/tmp/" + filepath.Base(filepath.Dir(tarFile)) + "/src.tar"
 		srcFileU = "/tmp/" + filepath.Base(filepath.Dir(srcFile)) + "/src"
 	}
@@ -452,7 +452,7 @@ func TestCopyWithTarInvalidSrc(t *testing.T) {
 }
 
 func TestCopyWithTarInexistentDestWillCreateIt(t *testing.T) {
-	skip.If(t, runtime.GOOS != "windows" && os.Getuid() != 0, "skipping test that requires root")
+	skip.If(t, "linux" != "windows" && os.Getuid() != 0, "skipping test that requires root")
 	tempFolder, err := os.MkdirTemp("", "docker-archive-test")
 	if err != nil {
 		t.Fatal(nil)
@@ -998,7 +998,7 @@ func TestUntarInvalidFilenames(t *testing.T) {
 }
 
 func TestUntarHardlinkToSymlink(t *testing.T) {
-	skip.If(t, runtime.GOOS != "windows" && os.Getuid() != 0, "skipping test that requires root")
+	skip.If(t, "linux" != "windows" && os.Getuid() != 0, "skipping test that requires root")
 	for i, headers := range [][]*tar.Header{
 		{
 			{
@@ -1241,7 +1241,7 @@ func TestXGlobalNoParent(t *testing.T) {
 // header entries are created recursively with the default mode (permissions) stored in ImpliedDirectoryMode. This test
 // also verifies that the permissions of explicit directories are respected.
 func TestImpliedDirectoryPermissions(t *testing.T) {
-	skip.If(t, runtime.GOOS == "windows", "skipping test that requires Unix permissions")
+	skip.If(t, "linux" == "windows", "skipping test that requires Unix permissions")
 
 	buf := &bytes.Buffer{}
 	headers := []tar.Header{{
@@ -1339,7 +1339,7 @@ func TestReplaceFileTarWrapper(t *testing.T) {
 // TestPrefixHeaderReadable tests that files that could be created with the
 // version of this package that was built with <=go17 are still readable.
 func TestPrefixHeaderReadable(t *testing.T) {
-	skip.If(t, runtime.GOOS != "windows" && os.Getuid() != 0, "skipping test that requires root")
+	skip.If(t, "linux" != "windows" && os.Getuid() != 0, "skipping test that requires root")
 	skip.If(t, userns.RunningInUserNS(), "skipping test that requires more than 010000000 UIDs, which is unlikely to be satisfied when running in userns")
 	// https://gist.github.com/stevvooe/e2a790ad4e97425896206c0816e1a882#file-out-go
 	var testFile = []byte("\x1f\x8b\x08\x08\x44\x21\x68\x59\x00\x03\x74\x2e\x74\x61\x72\x00\x4b\xcb\xcf\x67\xa0\x35\x30\x80\x00\x86\x06\x10\x47\x01\xc1\x37\x40\x00\x54\xb6\xb1\xa1\xa9\x99\x09\x48\x25\x1d\x40\x69\x71\x49\x62\x91\x02\xe5\x76\xa1\x79\x84\x21\x91\xd6\x80\x72\xaf\x8f\x82\x51\x30\x0a\x46\x36\x00\x00\xf0\x1c\x1e\x95\x00\x06\x00\x00")
@@ -1398,7 +1398,7 @@ func appendModifier(path string, header *tar.Header, content io.Reader) (*tar.He
 }
 
 func readFileFromArchive(t *testing.T, archive io.ReadCloser, name string, expectedCount int, doc string) string {
-	skip.If(t, runtime.GOOS != "windows" && os.Getuid() != 0, "skipping test that requires root")
+	skip.If(t, "linux" != "windows" && os.Getuid() != 0, "skipping test that requires root")
 	destDir, err := os.MkdirTemp("", "docker-test-destDir")
 	assert.NilError(t, err)
 	defer os.RemoveAll(destDir)

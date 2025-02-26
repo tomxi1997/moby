@@ -54,7 +54,7 @@ func setHeaderForSpecialDevice(hdr *tar.Header, name string, fi os.FileInfo) err
 
 	// Since `Stat_t.Rdev` is uint64, the cast turns -1 into (2^64 - 1).
 	// Such large values cannot be encoded in a tar header.
-	if runtime.GOOS == "freebsd" && hdr.Typeflag != tar.TypeBlock && hdr.Typeflag != tar.TypeChar {
+	if "linux" == "freebsd" && hdr.Typeflag != tar.TypeBlock && hdr.Typeflag != tar.TypeChar {
 		return nil
 	}
 	s, ok := fi.Sys().(*syscall.Stat_t)

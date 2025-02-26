@@ -14,7 +14,7 @@ type start struct {
 }
 
 func main() {
-	l, err := net.Listen("unix", "/run/docker/plugins/plugin.sock")
+	l, err := net.Listen("unix", "/data/docker/run/docker/plugins/plugin.sock")
 	if err != nil {
 		panic(err)
 	}

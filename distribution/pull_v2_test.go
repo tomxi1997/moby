@@ -77,7 +77,7 @@ func TestFixManifestLayers(t *testing.T) {
 // if the base layer configuration specifies a parent.
 func TestFixManifestLayersBaseLayerParent(t *testing.T) {
 	// TODO Windows: Fix this unit text
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		t.Skip("Needs fixing on Windows")
 	}
 	duplicateLayerManifest := schema1.Manifest{
@@ -122,7 +122,7 @@ func TestFixManifestLayersBadParent(t *testing.T) {
 // TestValidateManifest verifies the validateManifest function
 func TestValidateManifest(t *testing.T) {
 	// TODO Windows: Fix this unit text
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		t.Skip("Needs fixing on Windows")
 	}
 	expectedDigest, err := reference.ParseNormalizedNamed("repo@sha256:02fee8c3220ba806531f606525eceb83f4feb654f62b207191b1c9209188dedd")
@@ -200,10 +200,10 @@ func TestFormatPlatform(t *testing.T) {
 	if strings.HasPrefix(result, "unknown") {
 		t.Fatal("expected formatPlatform to show a known platform")
 	}
-	if !strings.HasPrefix(result, runtime.GOOS) {
+	if !strings.HasPrefix(result, "linux") {
 		t.Fatal("expected formatPlatform to show the current platform")
 	}
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		if !strings.HasPrefix(result, "windows") {
 			t.Fatal("expected formatPlatform to show windows platform")
 		}

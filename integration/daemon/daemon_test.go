@@ -30,7 +30,7 @@ const (
 )
 
 func TestConfigDaemonLibtrustID(t *testing.T) {
-	skip.If(t, runtime.GOOS == "windows")
+	skip.If(t, "linux" == "windows")
 
 	d := daemon.New(t)
 	defer d.Stop(t)
@@ -49,7 +49,7 @@ func TestConfigDaemonLibtrustID(t *testing.T) {
 }
 
 func TestConfigDaemonID(t *testing.T) {
-	skip.If(t, runtime.GOOS == "windows")
+	skip.If(t, "linux" == "windows")
 
 	d := daemon.New(t)
 	defer d.Stop(t)
@@ -86,7 +86,7 @@ func TestConfigDaemonID(t *testing.T) {
 }
 
 func TestDaemonConfigValidation(t *testing.T) {
-	skip.If(t, runtime.GOOS == "windows")
+	skip.If(t, "linux" == "windows")
 
 	d := daemon.New(t)
 	dockerBinary, err := d.BinaryPath()
@@ -152,7 +152,7 @@ func TestDaemonConfigValidation(t *testing.T) {
 }
 
 func TestConfigDaemonSeccompProfiles(t *testing.T) {
-	skip.If(t, runtime.GOOS == "windows")
+	skip.If(t, "linux" == "windows")
 
 	d := daemon.New(t)
 	defer d.Stop(t)
@@ -200,7 +200,7 @@ func TestConfigDaemonSeccompProfiles(t *testing.T) {
 }
 
 func TestDaemonProxy(t *testing.T) {
-	skip.If(t, runtime.GOOS == "windows", "cannot start multiple daemons on windows")
+	skip.If(t, "linux" == "windows", "cannot start multiple daemons on windows")
 	skip.If(t, os.Getenv("DOCKER_ROOTLESS") != "", "cannot connect to localhost proxy in rootless environment")
 
 	var received string
@@ -383,7 +383,7 @@ func TestDaemonProxy(t *testing.T) {
 }
 
 func TestLiveRestore(t *testing.T) {
-	skip.If(t, runtime.GOOS == "windows", "cannot start multiple daemons on windows")
+	skip.If(t, "linux" == "windows", "cannot start multiple daemons on windows")
 
 	t.Run("volume references", testLiveRestoreVolumeReferences)
 }

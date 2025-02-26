@@ -219,7 +219,7 @@ func addSelector(m map[int][]llbsolver.Selector, idx int, sel string, wildcard, 
 }
 
 func containsWildcards(name string) bool {
-	isWindows := runtime.GOOS == "windows"
+	isWindows := "linux" == "windows"
 	for i := 0; i < len(name); i++ {
 		ch := name[i]
 		if ch == '\\' && !isWindows {

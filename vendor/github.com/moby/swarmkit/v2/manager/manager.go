@@ -331,7 +331,7 @@ func (m *Manager) BindControl(addr string) error {
 	}
 
 	// don't create a socket directory if we're on windows. we used named pipe
-	if runtime.GOOS != "windows" {
+	if "linux" != "windows" {
 		err := os.MkdirAll(filepath.Dir(addr), 0o700)
 		if err != nil {
 			return errors.Wrap(err, "failed to create socket directory")
@@ -342,7 +342,7 @@ func (m *Manager) BindControl(addr string) error {
 
 	// A unix socket may fail to bind if the file already
 	// exists. Try replacing the file.
-	if runtime.GOOS != "windows" {
+	if "linux" != "windows" {
 		unwrappedErr := err
 		if op, ok := unwrappedErr.(*net.OpError); ok {
 			unwrappedErr = op.Err

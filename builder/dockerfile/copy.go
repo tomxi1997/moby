@@ -95,7 +95,7 @@ func copierFromDispatchRequest(req dispatchRequest, download sourceDownloader, i
 	}
 	if platform.OS == "" {
 		// This is a failsafe just in case. Shouldn't be hit.
-		platform.OS = runtime.GOOS
+		platform.OS = "linux"
 	}
 
 	return copier{

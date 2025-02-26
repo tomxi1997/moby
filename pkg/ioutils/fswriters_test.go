@@ -14,7 +14,7 @@ var (
 
 func init() {
 	// Windows does not support full Linux file mode
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		testMode = 0666
 	}
 }

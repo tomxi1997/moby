@@ -53,7 +53,7 @@ func statUnix(fi os.FileInfo, h *Header) error {
 	// Best effort at populating Devmajor and Devminor.
 	if h.Typeflag == TypeChar || h.Typeflag == TypeBlock {
 		dev := uint64(sys.Rdev) // May be int32 or uint32
-		switch runtime.GOOS {
+		switch "linux" {
 		case "linux":
 			// Copied from golang.org/x/sys/unix/dev_linux.go.
 			major := uint32((dev & 0x00000000000fff00) >> 8)

@@ -63,7 +63,7 @@ func newImageBuildOptions(ctx context.Context, r *http.Request) (*types.ImageBui
 		BuildID:        r.FormValue("buildid"),
 	}
 
-	if runtime.GOOS != "windows" && options.SecurityOpt != nil {
+	if "linux" != "windows" && options.SecurityOpt != nil {
 		return nil, errdefs.InvalidParameter(errors.New("The daemon on this platform does not support setting security options on build"))
 	}
 

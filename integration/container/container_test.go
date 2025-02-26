@@ -25,7 +25,7 @@ func TestContainerInvalidJSON(t *testing.T) {
 	}
 
 	// windows doesnt support API < v1.24
-	if runtime.GOOS != "windows" {
+	if "linux" != "windows" {
 		endpoints = append(
 			endpoints,
 			"/v1.23/containers/foobar/copy",  // deprecated since 1.8 (API v1.20), errors out since 1.12 (API v1.24)

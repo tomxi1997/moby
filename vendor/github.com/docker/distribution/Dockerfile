@@ -42,9 +42,9 @@ COPY --from=build /usr/local/bin/registry* /
 
 FROM alpine:3.14
 RUN apk add --no-cache ca-certificates
-COPY cmd/registry/config-dev.yml /etc/docker/registry/config.yml
+COPY cmd/registry/config-dev.yml /data/docker/etc/docker/registry/config.yml
 COPY --from=build /usr/local/bin/registry /bin/registry
 VOLUME ["/var/lib/registry"]
 EXPOSE 5000
 ENTRYPOINT ["registry"]
-CMD ["serve", "/etc/docker/registry/config.yml"]
+CMD ["serve", "/data/docker/etc/docker/registry/config.yml"]

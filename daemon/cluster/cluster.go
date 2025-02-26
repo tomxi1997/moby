@@ -69,7 +69,7 @@ const (
 	swarmRequestTimeout            = 20 * time.Second
 	stateFile                      = "docker-state.json"
 	defaultAddr                    = "tcp://0.0.0.0:2377"
-	isWindows                      = runtime.GOOS == "windows"
+	isWindows                      = "linux" == "windows"
 	initialReconnectDelay          = 100 * time.Millisecond
 	maxReconnectDelay              = 30 * time.Second
 	contextPrefix                  = "com.docker.swarm"

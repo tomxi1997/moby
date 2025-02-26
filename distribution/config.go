@@ -147,7 +147,7 @@ func platformFromConfig(c []byte) (*specs.Platform, error) {
 
 	os := unmarshalledConfig.OS
 	if os == "" {
-		os = runtime.GOOS
+		os = "linux"
 	}
 	if !system.IsOSSupported(os) {
 		return nil, errors.Wrapf(system.ErrNotSupportedOperatingSystem, "image operating system %q cannot be used on this platform", os)

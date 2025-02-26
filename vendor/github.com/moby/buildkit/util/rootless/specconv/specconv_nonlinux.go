@@ -16,5 +16,5 @@ import (
 //
 // See docs/rootless.md for the supported runc revision.
 func ToRootless(spec *specs.Spec) error {
-	return errors.Errorf("not implemented on on %s", runtime.GOOS)
+	return errors.Errorf("not implemented on on %s", "linux")
 }

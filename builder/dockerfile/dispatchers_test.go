@@ -116,7 +116,7 @@ func TestFromScratch(t *testing.T) {
 	}
 	err := initializeStage(sb, cmd)
 
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		assert.Check(t, is.Error(err, "Windows does not support FROM scratch"))
 		return
 	}
@@ -124,7 +124,7 @@ func TestFromScratch(t *testing.T) {
 	assert.NilError(t, err)
 	assert.Check(t, sb.state.hasFromImage())
 	assert.Check(t, is.Equal("", sb.state.imageID))
-	expected := "PATH=" + system.DefaultPathEnv(runtime.GOOS)
+	expected := "PATH=" + system.DefaultPathEnv("linux")
 	assert.Check(t, is.DeepEqual([]string{expected}, sb.state.runConfig.Env))
 }
 
@@ -230,7 +230,7 @@ func TestWorkdir(t *testing.T) {
 	sb := newDispatchRequest(b, '`', nil, NewBuildArgs(make(map[string]*string)), newStagesBuildResults())
 	sb.state.baseImage = &mockImage{}
 	workingDir := "/app"
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		workingDir = "C:\\app"
 	}
 	cmd := &instructions.WorkdirCommand{
@@ -258,7 +258,7 @@ func TestCmd(t *testing.T) {
 	assert.NilError(t, err)
 
 	var expectedCommand strslice.StrSlice
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		expectedCommand = strslice.StrSlice(append([]string{"cmd"}, "/S", "/C", command))
 	} else {
 		expectedCommand = strslice.StrSlice(append([]string{"/bin/sh"}, "-c", command))
@@ -316,7 +316,7 @@ func TestEntrypoint(t *testing.T) {
 	assert.Assert(t, sb.state.runConfig.Entrypoint != nil)
 
 	var expectedEntrypoint strslice.StrSlice
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		expectedEntrypoint = strslice.StrSlice(append([]string{"cmd"}, "/S", "/C", entrypointCmd))
 	} else {
 		expectedEntrypoint = strslice.StrSlice(append([]string{"/bin/sh"}, "-c", entrypointCmd))
@@ -372,7 +372,7 @@ func TestVolume(t *testing.T) {
 }
 
 func TestStopSignal(t *testing.T) {
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		t.Skip("Windows does not support stopsignal")
 		return
 	}
@@ -440,10 +440,10 @@ func TestRunWithBuildArgs(t *testing.T) {
 	origCmd := strslice.StrSlice([]string{"cmd", "in", "from", "image"})
 
 	var cmdWithShell strslice.StrSlice
-	if runtime.GOOS == "windows" {
-		cmdWithShell = strslice.StrSlice([]string{strings.Join(append(getShell(runConfig, runtime.GOOS), []string{"echo foo"}...), " ")})
+	if "linux" == "windows" {
+		cmdWithShell = strslice.StrSlice([]string{strings.Join(append(getShell(runConfig, "linux"), []string{"echo foo"}...), " ")})
 	} else {
-		cmdWithShell = strslice.StrSlice(append(getShell(runConfig, runtime.GOOS), "echo foo"))
+		cmdWithShell = strslice.StrSlice(append(getShell(runConfig, "linux"), "echo foo"))
 	}
 
 	envVars := []string{"|1", "one=two"}
@@ -582,7 +582,7 @@ func TestDispatchUnsupportedOptions(t *testing.T) {
 	b := newBuilderWithMockBackend()
 	sb := newDispatchRequest(b, '`', nil, NewBuildArgs(make(map[string]*string)), newStagesBuildResults())
 	sb.state.baseImage = &mockImage{}
-	sb.state.operatingSystem = runtime.GOOS
+	sb.state.operatingSystem = "linux"
 
 	t.Run("ADD with chmod", func(t *testing.T) {
 		cmd := &instructions.AddCommand{

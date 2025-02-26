@@ -35,7 +35,7 @@ The tool currently only works on Docker hosts running on Linux. To enable it on 
 follow the step below.
 
 1.  Set the `network-diagnostic-port` to a port which is free on the Docker
-    host, in the `/etc/docker/daemon.json` configuration file.
+    host, in the `/data/docker/etc/docker/daemon.json` configuration file.
 
     ```json
     “network-diagnostic-port”: <port>
@@ -68,7 +68,7 @@ Starting the diagnostic server listening on <port> for commands
 
 Repeat these steps for each node participating in the swarm.
 
-1.  Remove the `network-diagnostic-port` key from the `/etc/docker/daemon.json`
+1.  Remove the `network-diagnostic-port` key from the `/data/docker/etc/docker/daemon.json`
     configuration file.
 
 2.  Get the process ID (PID) of the `dockerd` process. It is the second field in

@@ -48,7 +48,7 @@ func OnGCE() bool {
 			logger.Infof("failed to read manufacturer, setting onGCE=false: %v")
 			return
 		}
-		vmOnGCE = isRunningOnGCE(mf, runtime.GOOS)
+		vmOnGCE = isRunningOnGCE(mf, "linux")
 	})
 	return vmOnGCE
 }

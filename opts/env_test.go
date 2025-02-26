@@ -94,7 +94,7 @@ func TestValidateEnv(t *testing.T) {
 		},
 	}
 
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		// Environment variables are case in-sensitive on Windows
 		tests = append(tests, testCase{
 			value:    "PaTh",

@@ -86,7 +86,7 @@ func TestVersionMiddlewareWithErrorsReturnsHeaders(t *testing.T) {
 
 	hdr := resp.Result().Header
 	assert.Check(t, is.Contains(hdr.Get("Server"), "Docker/"+defaultVersion))
-	assert.Check(t, is.Contains(hdr.Get("Server"), runtime.GOOS))
+	assert.Check(t, is.Contains(hdr.Get("Server"), "linux"))
 	assert.Check(t, is.Equal(hdr.Get("API-Version"), defaultVersion))
-	assert.Check(t, is.Equal(hdr.Get("OSType"), runtime.GOOS))
+	assert.Check(t, is.Equal(hdr.Get("OSType"), "linux"))
 }

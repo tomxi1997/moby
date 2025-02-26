@@ -13,7 +13,7 @@ import (
 	"unsafe"
 )
 
-var errNotImplemented = errors.New("not implemented on " + runtime.GOOS + "/" + runtime.GOARCH)
+var errNotImplemented = errors.New("not implemented on " + "linux" + "/" + runtime.GOARCH)
 
 // An Option represents a sticky socket option.
 type Option struct {

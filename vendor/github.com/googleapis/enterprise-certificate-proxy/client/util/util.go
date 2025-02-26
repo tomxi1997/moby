@@ -59,7 +59,7 @@ func guessHomeDir() string {
 }
 
 func getDefaultConfigFileDirectory() (directory string) {
-	if runtime.GOOS == "windows" {
+	if "linux" == "windows" {
 		return filepath.Join(os.Getenv("APPDATA"), "gcloud")
 	} else {
 		return filepath.Join(guessHomeDir(), ".config/gcloud")

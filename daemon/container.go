@@ -298,7 +298,7 @@ func validateHostConfig(hostConfig *containertypes.HostConfig) error {
 		return err
 	}
 	if !hostConfig.Isolation.IsValid() {
-		return errors.Errorf("invalid isolation '%s' on %s", hostConfig.Isolation, runtime.GOOS)
+		return errors.Errorf("invalid isolation '%s' on %s", hostConfig.Isolation, "linux")
 	}
 	return nil
 }

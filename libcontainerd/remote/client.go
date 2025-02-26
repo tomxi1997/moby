@@ -207,7 +207,7 @@ func (c *client) Start(ctx context.Context, id, checkpointDir string, withStdin 
 		},
 	}
 
-	if runtime.GOOS != "windows" {
+	if "linux" != "windows" {
 		taskOpts = append(taskOpts, func(_ context.Context, _ *containerd.Client, info *containerd.TaskInfo) error {
 			c.v2runcoptionsMu.Lock()
 			opts, ok := c.v2runcoptions[id]

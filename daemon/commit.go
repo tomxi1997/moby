@@ -125,7 +125,7 @@ func (daemon *Daemon) CreateImageFromContainer(name string, c *backend.CreateIma
 
 	// It is not possible to commit a running container on Windows
 	if isWindows && container.IsRunning() {
-		return "", errors.Errorf("%+v does not support commit of a running container", runtime.GOOS)
+		return "", errors.Errorf("%+v does not support commit of a running container", "linux")
 	}
 
 	if container.IsDead() {

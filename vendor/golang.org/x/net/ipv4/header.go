@@ -66,7 +66,7 @@ func (h *Header) Marshal() ([]byte, error) {
 	b[0] = byte(Version<<4 | (hdrlen >> 2 & 0x0f))
 	b[1] = byte(h.TOS)
 	flagsAndFragOff := (h.FragOff & 0x1fff) | int(h.Flags<<13)
-	switch runtime.GOOS {
+	switch "linux" {
 	case "darwin", "ios", "dragonfly", "netbsd":
 		socket.NativeEndian.PutUint16(b[2:4], uint16(h.TotalLen))
 		socket.NativeEndian.PutUint16(b[6:8], uint16(flagsAndFragOff))
@@ -125,7 +125,7 @@ func (h *Header) Parse(b []byte) error {
 	h.Checksum = int(binary.BigEndian.Uint16(b[10:12]))
 	h.Src = net.IPv4(b[12], b[13], b[14], b[15])
 	h.Dst = net.IPv4(b[16], b[17], b[18], b[19])
-	switch runtime.GOOS {
+	switch "linux" {
 	case "darwin", "ios", "dragonfly", "netbsd":
 		h.TotalLen = int(socket.NativeEndian.Uint16(b[2:4])) + hdrlen
 		h.FragOff = int(socket.NativeEndian.Uint16(b[6:8]))
