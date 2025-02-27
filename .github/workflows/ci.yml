@@ -1,0 +1,102 @@
+name: ci
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'master'
+      - '[0-9]+.[0-9]+'
+    tags:
+      - 'v*'
+  pull_request:
+
+env:
+  BUNDLES_OUTPUT: ./bundles
+
+jobs:
+  validate-dco:
+    uses: ./.github/workflows/.dco.yml
+
+  build:
+    runs-on: ubuntu-20.04
+    needs:
+      - validate-dco
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          - binary
+          
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      -
+        name: Build
+        uses: docker/bake-action@v2
+        with:
+          targets: ${{ matrix.target }}
+      -
+        name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.target }}
+          path: ${{ env.BUNDLES_OUTPUT }}
+          if-no-files-found: error
+          retention-days: 7
+
+  cross:
+    runs-on: ubuntu-20.04
+    needs:
+      - validate-dco
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - linux/amd64
+          - linux/arm/v5
+          - linux/arm/v6
+          - linux/arm/v7
+          - linux/arm64
+          - linux/ppc64le
+          - linux/s390x
+          - windows/amd64
+          - windows/arm64
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      -
+        name: Prepare
+        run: |
+          platform=${{ matrix.platform }}
+          echo "PLATFORM_PAIR=${platform//\//-}" >> $GITHUB_ENV
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      -
+        name: Build
+        uses: docker/bake-action@v2
+        with:
+          targets: cross
+        env:
+          DOCKER_CROSSPLATFORMS: ${{ matrix.platform }}
+      -
+        name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: cross-${{ env.PLATFORM_PAIR }}
+          path: ${{ env.BUNDLES_OUTPUT }}
+          if-no-files-found: error
+          retention-days: 7
