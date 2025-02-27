@@ -206,7 +206,7 @@ ARG DEBIAN_FRONTEND
 ARG TARGETPLATFORM
 RUN --mount=type=cache,sharing=locked,id=moby-containerd-aptlib,target=/var/lib/apt \
     --mount=type=cache,sharing=locked,id=moby-containerd-aptcache,target=/var/cache/apt \
-        apt-get update && xx-apt-get install -y --no-install-recommends \
+        apt-get update && apt-get install -y --no-install-recommends \
             gcc libbtrfs-dev libsecret-1-dev
 ARG DOCKER_STATIC
 RUN --mount=from=containerd-src,src=/usr/src/containerd,rw \
