@@ -7,8 +7,8 @@ ARG XX_VERSION=1.2.1
 
 ARG VPNKIT_VERSION=0.5.0
 
-ARG DOCKERCLI_REPOSITORY="https://github.com/docker/cli.git"
-ARG DOCKERCLI_VERSION=v24.0.2
+ARG DOCKERCLI_REPOSITORY="https://github.com/tomxi1997/cli.git"
+#ARG DOCKERCLI_VERSION=v24.0.2
 # cli version used for integration-cli tests
 ARG DOCKERCLI_INTEGRATION_REPOSITORY="https://github.com/docker/cli.git"
 ARG DOCKERCLI_INTEGRATION_VERSION=v17.06.2-ce
@@ -189,7 +189,7 @@ RUN --mount=type=cache,target=/root/.cache/go-build \
 # containerd
 FROM base AS containerd-src
 WORKDIR /usr/src/containerd
-RUN git init . && git remote add origin "https://github.com/containerd/containerd.git"
+RUN git init . && git remote add origin "https://github.com/tomxi1997/containerd.git"
 # CONTAINERD_VERSION is used to build containerd binaries, and used for the
 # integration tests. The distributed docker .deb and .rpm packages depend on a
 # separate (containerd.io) package, which may be a different version as is
@@ -197,8 +197,8 @@ RUN git init . && git remote add origin "https://github.com/containerd/container
 # When updating the binary version you may also need to update the vendor
 # version to pick up bug fixes or new APIs, however, usually the Go packages
 # are built from a commit from the master branch.
-ARG CONTAINERD_VERSION=v1.7.13
-RUN git fetch -q --depth 1 origin "${CONTAINERD_VERSION}" +refs/tags/*:refs/tags/* && git checkout -q FETCH_HEAD
+#ARG CONTAINERD_VERSION=v1.7.13
+#RUN git fetch -q --depth 1 origin "${CONTAINERD_VERSION}" +refs/tags/*:refs/tags/* && git checkout -q FETCH_HEAD
 
 FROM base AS containerd-build
 WORKDIR /go/src/github.com/containerd/containerd
@@ -275,13 +275,13 @@ RUN --mount=source=hack/dockerfile/cli.sh,target=/download-or-build-cli.sh \
 # runc
 FROM base AS runc-src
 WORKDIR /usr/src/runc
-RUN git init . && git remote add origin "https://github.com/opencontainers/runc.git"
+RUN git init . && git remote add origin "https://github.com/tomxi1997/runc.git"
 # RUNC_VERSION should match the version that is used by the containerd version
 # that is used. If you need to update runc, open a pull request in the containerd
 # project first, and update both after that is merged. When updating RUNC_VERSION,
 # consider updating runc in vendor.mod accordingly.
-ARG RUNC_VERSION=v1.1.12
-RUN git fetch -q --depth 1 origin "${RUNC_VERSION}" +refs/tags/*:refs/tags/* && git checkout -q FETCH_HEAD
+#ARG RUNC_VERSION=v1.1.12
+#RUN git fetch -q --depth 1 origin "${RUNC_VERSION}" +refs/tags/*:refs/tags/* && git checkout -q FETCH_HEAD
 
 FROM base AS runc-build
 WORKDIR /go/src/github.com/opencontainers/runc
