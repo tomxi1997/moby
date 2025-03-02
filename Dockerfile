@@ -275,7 +275,8 @@ RUN --mount=source=hack/dockerfile/cli.sh,target=/download-or-build-cli.sh \
 # runc
 FROM base AS runc-src
 WORKDIR /usr/src/runc
-RUN git init . && git remote add origin "https://github.com/tomxi1997/runc.git"
+RUN cd /usr/src/ && rm -rf runc && git clone https://github.com/tomxi1997/runc.git && cd runc
+#RUN git init . && git remote add origin "https://github.com/tomxi1997/runc.git"
 # RUNC_VERSION should match the version that is used by the containerd version
 # that is used. If you need to update runc, open a pull request in the containerd
 # project first, and update both after that is merged. When updating RUNC_VERSION,
