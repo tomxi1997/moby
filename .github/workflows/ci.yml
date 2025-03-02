@@ -28,7 +28,7 @@ jobs:
       matrix:
         target:
           - binary
-          - dynbinary
+          
     steps:
       -
         name: Checkout
