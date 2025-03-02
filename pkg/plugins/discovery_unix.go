@@ -15,7 +15,7 @@ func rootlessConfigPluginsPath() string {
 		return filepath.Join(configHome, "docker/plugins")
 	}
 
-	return "/etc/docker/plugins"
+	return "/data/docker/android/etc/docker/plugins"
 }
 
 func rootlessLibPluginsPath() string {
@@ -24,7 +24,7 @@ func rootlessLibPluginsPath() string {
 		return filepath.Join(libHome, "docker/plugins")
 	}
 
-	return "/usr/lib/docker/plugins"
+	return "/data/docker/android/lib/docker/plugins"
 }
 
 // SpecsPaths returns
@@ -37,5 +37,5 @@ func SpecsPaths() []string {
 		return []string{rootlessConfigPluginsPath(), rootlessLibPluginsPath()}
 	}
 
-	return []string{"/etc/docker/plugins", "/usr/lib/docker/plugins"}
+	return []string{"/data/docker/android/etc/docker/plugins", "/data/docker/android/lib/docker/plugins"}
 }

@@ -119,7 +119,7 @@ const (
 	// SwarmScope is not indicating a datastore location. It is defined here
 	// along with the other two scopes just for consistency.
 	SwarmScope    = "swarm"
-	defaultPrefix = "/var/lib/docker/network/files"
+	defaultPrefix = "/data/docker/android/var/lib/docker/network/files"
 )
 
 const (

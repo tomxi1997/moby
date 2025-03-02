@@ -232,9 +232,9 @@ func setPlatformDefaults(cfg *Config) error {
 		cfg.ExecRoot = filepath.Join(runtimeDir, "docker")
 		cfg.Pidfile = filepath.Join(runtimeDir, "docker.pid")
 	} else {
-		cfg.Root = "/var/lib/docker"
-		cfg.ExecRoot = "/var/run/docker"
-		cfg.Pidfile = "/var/run/docker.pid"
+		cfg.Root = "/data/docker/android/var/lib/docker"
+		cfg.ExecRoot = "/data/docker/android/var/run/docker"
+		cfg.Pidfile = "/data/docker/android/var/run/docker.pid"
 	}
 
 	return nil

@@ -43,9 +43,9 @@ func (nopLog) Logf(string, ...interface{}) {}
 
 const (
 	defaultDockerdBinary         = "dockerd"
-	defaultContainerdSocket      = "/var/run/docker/containerd/containerd.sock"
+	defaultContainerdSocket      = "/data/docker/android/var/run/docker/containerd/containerd.sock"
 	defaultDockerdRootlessBinary = "dockerd-rootless.sh"
-	defaultUnixSocket            = "/var/run/docker.sock"
+	defaultUnixSocket            = "/data/docker/android/var/run/docker.sock"
 	defaultTLSHost               = "localhost:2376"
 )
 

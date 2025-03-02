@@ -20,7 +20,7 @@ import (
 )
 
 const (
-	defaultPrefix = "/var/lib/docker/network/files"
+	defaultPrefix = "/data/docker/android/var/lib/docker/network/files"
 	dirPerm       = 0o755
 	filePerm      = 0o644
 )
