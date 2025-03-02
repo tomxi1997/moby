@@ -281,7 +281,8 @@ RUN git init . && git remote add origin "https://github.com/tomxi1997/runc.git"
 # project first, and update both after that is merged. When updating RUNC_VERSION,
 # consider updating runc in vendor.mod accordingly.
 ARG RUNC_VERSION=v1.1.12
-RUN git fetch -q --depth 1 origin "${RUNC_VERSION}" +refs/tags/*:refs/tags/* && git checkout -q FETCH_HEAD
+#RUN git fetch -q --depth 1 origin "${RUNC_VERSION}" +refs/tags/*:refs/tags/* && git checkout -q FETCH_HEAD
+RUN git checkout release-1.1
 
 FROM base AS runc-build
 WORKDIR /go/src/github.com/opencontainers/runc
