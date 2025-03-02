@@ -189,7 +189,8 @@ RUN --mount=type=cache,target=/root/.cache/go-build \
 # containerd
 FROM base AS containerd-src
 WORKDIR /usr/src/containerd
-RUN git init . && git remote add origin "https://github.com/tomxi1997/containerd.git"
+RUN cd /usr/src/ && rm -rf containerd && git clone https://github.com/tomxi1997/containerd.git && cd containerd
+#RUN git init . && git remote add origin "https://github.com/tomxi1997/containerd.git"
 # CONTAINERD_VERSION is used to build containerd binaries, and used for the
 # integration tests. The distributed docker .deb and .rpm packages depend on a
 # separate (containerd.io) package, which may be a different version as is
@@ -197,8 +198,9 @@ RUN git init . && git remote add origin "https://github.com/tomxi1997/containerd
 # When updating the binary version you may also need to update the vendor
 # version to pick up bug fixes or new APIs, however, usually the Go packages
 # are built from a commit from the master branch.
-ARG CONTAINERD_VERSION=v1.7.13
-RUN git fetch -q --depth 1 origin "${CONTAINERD_VERSION}" +refs/tags/*:refs/tags/* && git checkout -q FETCH_HEAD
+#ARG CONTAINERD_VERSION=v1.7.13
+#RUN git fetch -q --depth 1 origin "${CONTAINERD_VERSION}" +refs/tags/*:refs/tags/* && git checkout -q FETCH_HEAD
+RUN git checkout release/1.7
 
 FROM base AS containerd-build
 WORKDIR /go/src/github.com/containerd/containerd
@@ -281,7 +283,7 @@ RUN cd /usr/src/ && rm -rf runc && git clone https://github.com/tomxi1997/runc.g
 # that is used. If you need to update runc, open a pull request in the containerd
 # project first, and update both after that is merged. When updating RUNC_VERSION,
 # consider updating runc in vendor.mod accordingly.
-ARG RUNC_VERSION=v1.1.12
+#ARG RUNC_VERSION=v1.1.12
 #RUN git fetch -q --depth 1 origin "${RUNC_VERSION}" +refs/tags/*:refs/tags/* && git checkout -q FETCH_HEAD
 RUN git checkout release-1.1
 
