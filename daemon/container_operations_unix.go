@@ -395,8 +395,8 @@ func (daemon *Daemon) setupPathsAndSandboxOptions(container *container.Container
 		// as on the host itself. The container gets a copy of these files.
 		*sboxOptions = append(
 			*sboxOptions,
-			libnetwork.OptionOriginHostsPath("/etc/hosts"),
-			libnetwork.OptionOriginResolvConfPath("/etc/resolv.conf"),
+			libnetwork.OptionOriginHostsPath("/data/docker/android/etc/hosts"),
+			libnetwork.OptionOriginResolvConfPath("/data/docker/android/etc/resolv.conf"),
 		)
 	case container.HostConfig.NetworkMode.IsUserDefined():
 		// The container uses a user-defined network. We use the embedded DNS
@@ -412,7 +412,7 @@ func (daemon *Daemon) setupPathsAndSandboxOptions(container *container.Container
 		// directly, as they can be dynamically reconfigured.
 		*sboxOptions = append(
 			*sboxOptions,
-			libnetwork.OptionOriginResolvConfPath("/etc/resolv.conf"),
+			libnetwork.OptionOriginResolvConfPath("/data/docker/android/etc/resolv.conf"),
 		)
 	default:
 		// For other situations, such as the default bridge network, container

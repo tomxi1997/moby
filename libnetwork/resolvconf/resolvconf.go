@@ -13,9 +13,9 @@ import (
 
 const (
 	// defaultPath is the default path to the resolv.conf that contains information to resolve DNS. See Path().
-	defaultPath = "/etc/resolv.conf"
+	defaultPath = "/data/docker/android/etc/resolv.conf"
 	// alternatePath is a path different from defaultPath, that may be used to resolve DNS. See Path().
-	alternatePath = "/run/systemd/resolve/resolv.conf"
+	alternatePath = "/etc/resolv.conf"
 )
 
 // constants for the IP address type

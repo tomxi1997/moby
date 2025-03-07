@@ -54,8 +54,8 @@ func (p *Plugin) InitSpec(execRoot string) (*specs.Spec, error) {
 		if p.PluginObj.Config.Network.Type == "host" {
 			oci.RemoveNamespace(&s, specs.LinuxNamespaceType("network"))
 		}
-		etcHosts := "/etc/hosts"
-		resolvConf := "/etc/resolv.conf"
+		etcHosts := "/data/docker/android/etc/hosts"
+		resolvConf := "/data/docker/android/etc/resolv.conf"
 		mounts = append(mounts,
 			types.PluginMount{
 				Source:      &etcHosts,
